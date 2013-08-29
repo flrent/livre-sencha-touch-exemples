@@ -26,6 +26,10 @@ Ext.define('ConfMate.controller.Infos', {
                 this.getNavigation().push({xtype:'infosVenir'});
                 break;
 
+            case "suggestions":
+                this.getNavigation().push({xtype:'infosSuggestions'});
+                break;
+
             default: 
                 break;
         }

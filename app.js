@@ -38,13 +38,14 @@ Ext.application({
         'favoris.Main','favoris.Liste',
         'planning.Main','planning.Session','planning.Liste',
         'intervenants.Main','intervenants.Liste','intervenants.Intervenant',
-        'twitter.Main',
-        'infos.Main','infos.Menu','infos.Histoire','infos.Suggestions'
+        'twitter.Main','twitter.Liste',
+        'infos.Main','infos.Menu','infos.Histoire','infos.Suggestions','infos.Venir'
     ],
     stores: [
         'Favoris',
         'Intervenants',
         'Planning',
+        'Tweets',
         'Session'
     ],
     controllers: [

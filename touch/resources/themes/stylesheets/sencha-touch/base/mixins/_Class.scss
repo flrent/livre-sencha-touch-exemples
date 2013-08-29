@@ -47,7 +47,7 @@
     @include absolute-position;
 }
 
-@mixin st-box($important: no) {
+/*@mixin st-box($important: no) {
     @if $important == important {
         display: -webkit-box !important;
         display: -ms-flexbox !important;
@@ -57,7 +57,20 @@
         display: -ms-flexbox;
         display: flex;
     }
+}*/
+
+@mixin st-box($important: no) {
+    @if $important == important {
+        display: flex !important;
+        display: -webkit-box !important;
+        display: -ms-flexbox !important;
+    } @else {
+        display: flex;
+        display: -webkit-box;
+        display: -ms-flexbox;
+    }
 }
+
 
 @mixin st-box-align($align: stretch) {
     -webkit-box-align: $align;

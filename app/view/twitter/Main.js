@@ -6,6 +6,8 @@ Ext.define('ConfMate.view.twitter.Main', {
         iconCls:"chat",
         title:"Twitter",
 
-        items:[]
+        items:[{
+        	xtype:'twitterListe'
+        }]
     }
 });

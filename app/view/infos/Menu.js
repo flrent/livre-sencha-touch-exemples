@@ -11,7 +11,8 @@ Ext.define('ConfMate.view.infos.Menu', {
     	},
         items:[
 		    {
-		    	html:'<img src="resources/images/logo.png">'
+		    	style:'text-align:center;',
+		    	html:'<p><img src="resources/images/logo.png"></p>'
 		    },
 		    {
 		    	xtype:'dataview',
@@ -23,6 +24,9 @@ Ext.define('ConfMate.view.infos.Menu', {
 		    		},
 		    		{
 		    			nom:"Comment venir",action:"venir"
+		    		},
+		    		{
+		    			nom:"Suggestions",action:"suggestions"
 		    		}
 		    	]
 		    }

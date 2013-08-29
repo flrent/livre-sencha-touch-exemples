@@ -8,7 +8,7 @@ Ext.define('ConfMate.view.infos.Main', {
 
         items:[
             {
-                xtype:'infosSuggestions'
+                xtype:'infosMenu'
             }
         ]
     }
