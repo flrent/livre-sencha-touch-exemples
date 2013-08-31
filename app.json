@@ -29,6 +29,8 @@
     "fallback": []
   },
   "resources": [
+    "data.json",
+    "intervenants.json",
     "resources/images",
     "resources/icons",
     "resources/startup"
