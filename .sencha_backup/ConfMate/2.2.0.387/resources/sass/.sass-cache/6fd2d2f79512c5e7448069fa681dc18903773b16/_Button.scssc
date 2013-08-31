@@ -1,0 +1,555 @@
+3.1.0 (Brainy Betty)
+fb54afb72a3a78f4bf61a4d527d1083fccc855a9
+o:Sass::Tree::RootNode
+:
+@linei:@options{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:@has_childrenT:@template"/**
+ * @class Ext.Button
+ */
+
+.x-button {
+    @include background-clip(padding-box);
+    @include toolbar-button(#ccc, $button-gradient);
+
+    @if $include-border-radius {
+        @include border-radius($button-radius);
+    }
+
+    min-height: $button-height;
+    padding: .3em .6em;
+
+    // Default icon style
+    .x-button-icon {
+        width: 1.5em;
+        height: 1.5em;
+
+        &:before {
+            font-size: 1.6em;
+            line-height: 1em;
+        }
+    }
+
+    &.x-item-disabled .x-button-label,
+    &.x-item-disabled .x-button-icon {
+        opacity: .5;
+    }
+}
+
+@if $include-border-radius {
+    .x-button-round {
+        @include border-radius($button-height/2);
+    }
+}
+
+.x-ie .x-button {
+    height: 0px;
+
+    .x-button-label {
+        overflow: visible;
+    }
+}
+
+.x-iconalign-left .x-button-label {
+    margin-left: .6em;
+}
+.x-iconalign-right .x-button-label {
+    margin-right: .6em;
+}
+.x-iconalign-top,
+.x-iconalign-bottom {
+    padding-top: .2em !important;
+    padding-bottom: .2em !important;
+}
+
+// Button labels
+.x-button-label {
+    font-weight: bold;
+    line-height: 1.2em;
+}
+
+// Toolbar button styling
+.x-toolbar .x-button {
+    margin: 6px .2em;
+    padding: 0 .6em;
+
+    .x-button-label {
+        font-size: .7em;
+    }
+
+    .x-button-label, .x-hasbadge .x-badge {
+        line-height: 1.6em;
+    }
+
+    .x-button-icon {
+        &:before {
+            font-size: 1.3em;
+            line-height: 1.3em;
+        }
+    }
+}
+
+// For whatever reason, IE10 multiples before values with existing values!? We need to add lower values
+// here so it is the correct size.
+.x-ie .x-toolbar .x-button .x-button-icon::before {
+    font-size: .6em;
+    line-height: 1em;
+}
+
+.x-button-small,
+.x-toolbar .x-button-small {
+    @if $include-border-radius {
+        @include border-radius(.3em);
+    }
+
+    padding: .2em .4em;
+    min-height: 0;
+
+    .x-button-label {
+        font-size: .6em;
+    }
+
+    .x-button-icon {
+        width: .75em;
+        height: .75em;
+    }
+}
+
+// Back/Forward buttons
+$shadow-width: .045em; // Space between tip and its shadow
+$overlap-width: .2em; // how far the mask is clipped
+
+// $mask-height: $button-height + $button-stroke-weight * 2; // Ugh, this is non-specific... borders?
+$mask-height: $button-height;
+$mask-width: $mask-height/2.23;
+
+$mask-offset: $button-radius - $overlap-width + $shadow-width - .02;
+
+$tip-width: $mask-width - $mask-offset + $shadow-width;
+
+.x-button-forward,
+.x-button-back {
+    position: relative;
+    overflow: visible;
+    height: $button-height - 0.1;
+    z-index: 1;
+}
+
+.x-webkit {
+    .x-button-forward,
+    .x-button-back {
+        &:before, &:after {
+            @include insertion(15px, auto, -2px, auto);
+            bottom: -2px;
+            z-index: 2;
+            -webkit-mask: 4px 0 theme_image('default', "tip2_left.png") no-repeat;
+            -webkit-mask-size: 15px 100%;
+            overflow: hidden;
+        }
+    }
+}
+
+.x-webkit {
+    .x-button-back,
+    .x-toolbar .x-button-back {
+        margin-left: $tip-width - $shadow-width + $toolbar-spacing  - 0.01;
+        padding-left: .4em;
+
+        &:before {
+            left: -15px;
+        }
+
+        &:after {
+            left: -14px;
+        }
+    }
+
+    .x-button-forward,
+    .x-toolbar .x-button-forward {
+        margin-right: $tip-width - $shadow-width + $toolbar-spacing;
+        padding-right: .4em;
+
+        &:before,
+        &:after {
+            -webkit-mask: -4px 0 theme_image('default', "tip2_right.png") no-repeat;
+            -webkit-mask-size: 15px 100%;
+        }
+
+        &:before {
+            right: -15px;
+        }
+
+        &:after {
+            right: -14px;
+        }
+    }
+}
+
+// Plain buttons automatically use a margin trick to have a
+// wide gradial glow for pressed state.
+.x-button.x-button-plain,
+.x-toolbar .x-button.x-button-plain {
+    background: none;
+    border: 0 none;
+    min-height: 0;
+    text-shadow: none;
+    line-height: auto;
+    height: 1.9em;
+    padding: 0 0.5em;
+
+    @if $include-border-radius {
+        @include border-radius(none);
+    }
+
+    & > * {
+        overflow: visible;
+    }
+
+    &.x-button-pressing, &.x-button-pressed {
+        background: none;
+
+        $mask-radial-glow: lighten($active-color, 50%);
+        @include background-image(radial-gradient(fade-out($mask-radial-glow, .3), fade-out($mask-radial-glow, 1) 24px));
+    }
+}
+
+
+// SegmentedButtons
+.x-segmentedbutton .x-button {
+    margin: 0;
+
+    @if $include-border-radius {
+        @include border-radius(0);
+
+        &.x-first {
+            @include border-left-radius($button-radius);
+        }
+
+        &.x-last {
+            @include border-right-radius($button-radius);
+        }
+    }
+
+    &:not(.x-first) {
+        border-left: 0;
+    }
+}
+
+// Badges
+$badge-size: 2em !default;
+$badge-radius: .2em !default;
+$badge-bg-color: darken($alert-color, 10%) !default;
+$badge-bg-gradient: $base-gradient !default;
+
+.x-hasbadge {
+    overflow: visible;
+
+    .x-badge {
+        @extend .x-button-label;
+
+        border-color: darken($badge-bg-color, 10%);
+        min-width: $badge-size;
+        line-height: 1.2em;
+        top: -.2em;
+        padding: .1em .3em;
+
+        @include background-clip(padding-box);
+        @include color-by-background($badge-bg-color, $contrast: 50%);
+        @include background-gradient($badge-bg-color, $badge-bg-gradient);
+
+        @if $include-border-radius {
+            @include border-radius($badge-radius);
+        }
+
+        @if $include-button-highlights {
+            @include bevel-by-background($badge-bg-color);
+            @include box-shadow(rgba(#000, .5) 0 .1em .1em);
+        }
+    }
+}
+
+@if $include-default-icons {
+    @include icon('calendar');
+    @include icon('action');
+    @include icon('add');
+    @include icon('arrow_down');
+    @include icon('arrow_left');
+    @include icon('arrow_right');
+    @include icon('arrow_up');
+    @include icon('compose');
+    @include icon('delete');
+    @include icon('organize');
+    @include icon('refresh');
+    @include icon('reply');
+    @include icon('search');
+    @include icon('settings');
+    @include icon('star');
+    @include icon('trash');
+    @include icon('maps');
+    @include icon('locate');
+    @include icon('home');
+    @include icon('bookmarks');
+    @include icon('download');
+    @include icon('favorites');
+    @include icon('info');
+    @include icon('more');
+    @include icon('time');
+    @include icon('user');
+    @include icon('team');
+}
+
+/**
+ * Creates a theme UI for buttons.
+ * Also automatically generates UIs for {ui-label}-round and {ui-label}-small.
+ *
+ *     // SCSS
+ *     @include sencha-button-ui('secondary', #99A4AE, 'glossy');
+ *
+ *     // JS
+ *     var cancelBtn = new Ext.Button({text: 'Cancel', ui: 'secondary'});
+ *
+ * @param {string} $ui-label The name of the UI being created.
+ *   Can not included spaces or special punctuation (used in class names)
+ * @param {color} $color Base color for the UI.
+ * @param {string} $gradient Default gradient for the UI.
+ */
+@mixin sencha-button-ui($ui-label, $color, $gradient: $button-gradient) {
+    .x-button.x-button-#{$ui-label},
+    .x-button.x-button-#{$ui-label}-round,
+    .x-button.x-button-#{$ui-label}-small {
+        @include toolbar-button($color, $gradient);
+    }
+
+    @if $include-border-radius {
+        .x-button.x-button-#{$ui-label}-round {
+            @extend .x-button-round;
+        }
+    }
+
+    .x-button.x-button-#{$ui-label}-small {
+        @extend .x-button-small;
+    }
+}
+
+@if $include-button-uis {
+    @include sencha-button-ui('action', $active-color);
+    @include sencha-button-ui('confirm', desaturate(darken($confirm-color, 10%), 5%));
+    @include sencha-button-ui('decline', desaturate(darken($alert-color, 10%), 5%));
+}
+:@children[.o:Sass::Tree::CommentNode;i;@:@silent0:@lines[ :
+@loud0;[ :@value"!/**
+ * @class Ext.Button
+ */o:Sass::Tree::RuleNode;i
+;@:
+@rule[".x-button:@parsed_ruleso:"Sass::Selector::CommaSequence;i
+:@members[o:Sass::Selector::Sequence;[o:#Sass::Selector::SimpleSequence;i
+;[o:Sass::Selector::Class;i
+:
+@name["x-button:@filename" ;@;@;T;[o:Sass::Tree::MixinNode;i;"background-clip;@:@keywords{ ;[ :
+@args[o:Sass::Script::String	;i:
+@type:identifier;{ ;"padding-boxo;;i;"toolbar-button;@;{ ;[ ;[o:Sass::Script::Color	;i:@attrs{	:
+alphai:
+greeniÌ:	blueiÌ:rediÌ;{ ;0o:Sass::Script::Variable	;i;"button-gradient;@,:@underscored_name"button_gradientu:Sass::Tree::IfNode”[o:Sass::Script::Variable	:
+@linei:
+@name"include-border-radius:@options{ :@underscored_name"include_border_radius0[o:Sass::Tree::MixinNode;i;"border-radius;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:@keywords{ :@children[ :
+@args[o; 	;i;"button-radius;{ ;	"button_radiuso:Sass::Tree::PropNode;i:@prop_syntax:new;["min-height;@:@importantF;[ :
+@tabsi ;o;)	;i;"button-height;{ ;*"button_heighto;,;i;-;.;["padding;@;/F;[ ;0i ;o; ;!;";".3em .6emo;;i;@;i ;[ ;0;[ ;"/* Default icon style */o;;i;@;[".x-button-icon;o;;i;[o;;[o;;i;[o;;i;["x-button-icon;" ;@O;@O;T;[o;,;i;-;.;["
+width;@;/F;[ ;0i ;o; ;!;";"
+1.5emo;,;i;-;.;["height;@;/F;[ ;0i ;o; ;!;";"
+1.5emo;;i;@;["&:before;o;;i;[o;;[o;;i;[o:Sass::Selector::Parent;i;" o:Sass::Selector::Pseudo
+;i;["before;!:
+class:	@arg0;@g;@g;@g;T;[o;,;i;-;.;["font-size;@;/F;[ ;0i ;o; ;!;";"
+1.6emo;,;i;-;.;["line-height;@;/F;[ ;0i ;o; ;!;";"1em;0i ;0i o;;i!;@;["L&.x-item-disabled .x-button-label,
+    &.x-item-disabled .x-button-icon;o;;i!;[o;;[o;;i!;[o;1;i!;" o;;i!;["x-item-disabled;@};@}o;;i!;[o;;i!;["x-button-label;@};@}o;;["
+o;;i!;[o;1;i!;@}o;;i!;["x-item-disabled;@};@}o;;i!;[o;;i!;["x-button-icon;@};@};@};T;[o;,;i";-;.;["opacity;@;/F;[ ;0i ;o; ;!;";".5;0i ;0i u;+f[o:Sass::Script::Variable	:
+@linei&:
+@name"include-border-radius:@options{ :@underscored_name"include_border_radius0[o:Sass::Tree::RuleNode;i';{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@rule[".x-button-round:@parsed_ruleso:"Sass::Selector::CommaSequence;i':@members[o:Sass::Selector::Sequence;[o:#Sass::Selector::SimpleSequence;i';[o:Sass::Selector::Class;i';["x-button-round:@filename" ;@;@:@has_childrenT:@children[o:Sass::Tree::MixinNode;i(;"border-radius;@:@keywords{ ;[ :
+@args[o:Sass::Script::Operation
+;i(;{ :@operand2o:Sass::Script::Number;i(;@":@original"2:@denominator_units[ :@numerator_units[ :@valuei:@operand1o; 	;i(;"button-height;@";	"button_height:@operator:div:
+@tabsi o;;i,;@;[".x-ie .x-button;o;;i,;[o;;[o;;i,;[o;;i,;["	x-ie;" ;@¨o;;i,;[o;;i,;["x-button;@¨;@¨;@¨;T;[o;,;i-;-;.;["height;@;/F;[ ;0i ;o; ;!;";"0pxo;;i/;@;[".x-button-label;o;;i/;[o;;[o;;i/;[o;;i/;["x-button-label;" ;@Á;@Á;T;[o;,;i0;-;.;["overflow;@;/F;[ ;0i ;o; ;!;";"visible;0i ;0i o;;i4;@;["&.x-iconalign-left .x-button-label;o;;i4;[o;;[o;;i4;[o;;i4;["x-iconalign-left;" ;@Õo;;i4;[o;;i4;["x-button-label;@Õ;@Õ;@Õ;T;[o;,;i5;-;.;["margin-left;@;/F;[ ;0i ;o; ;!;";"	.6em;0i o;;i7;@;["'.x-iconalign-right .x-button-label;o;;i7;[o;;[o;;i7;[o;;i7;["x-iconalign-right;" ;@îo;;i7;[o;;i7;["x-button-label;@î;@î;@î;T;[o;,;i8;-;.;["margin-right;@;/F;[ ;0i ;o; ;!;";"	.6em;0i o;;i;;@;["*.x-iconalign-top,
+.x-iconalign-bottom;o;;i;;[o;;[o;;i;;[o;;i;;["x-iconalign-top;" ;@o;;["
+o;;i;;[o;;i;;["x-iconalign-bottom;@;@;@;T;[o;,;i<;-;.;["padding-top;@;/F;[ ;0i ;o:Sass::Script::List	;i<;{ :@separator:
+space;[o:Sass::Script::Number;i<;@:@original"
+0.2em:@denominator_units[ :@numerator_units["em;f0.20000000000000001 ™šo; 	;i<;!;";@;"!importanto;,;i=;-;.;["padding-bottom;@;/F;[ ;0i ;o;5	;i=;{ ;6;7;[o;8;i=;@%;9"
+0.2em;:[ ;;["em;f0.20000000000000001 ™šo; 	;i=;!;";@%;"!important;0i o;;i@;@;i ;[ ;0;[ ;"/* Button labels */o;;iA;@;[".x-button-label;o;;iA;[o;;[o;;iA;[o;;iA;["x-button-label;" ;@?;@?;T;[o;,;iB;-;.;["font-weight;@;/F;[ ;0i ;o; ;!;";"	boldo;,;iC;-;.;["line-height;@;/F;[ ;0i ;o; ;!;";"
+1.2em;0i o;;iF;@;i ;[ ;0;[ ;"!/* Toolbar button styling */o;;iG;@;[".x-toolbar .x-button;o;;iG;[o;;[o;;iG;[o;;iG;["x-toolbar;" ;@]o;;iG;[o;;iG;["x-button;@];@];@];T;[
+o;,;iH;-;.;["margin;@;/F;[ ;0i ;o; ;!;";"6px .2emo;,;iI;-;.;["padding;@;/F;[ ;0i ;o; ;!;";"0 .6emo;;iK;@;[".x-button-label;o;;iK;[o;;[o;;iK;[o;;iK;["x-button-label;" ;@|;@|;T;[o;,;iL;-;.;["font-size;@;/F;[ ;0i ;o; ;!;";"	.7em;0i o;;iO;@;["*.x-button-label, .x-hasbadge .x-badge;o;;iO;[o;;[o;;iO;[o;;iO;["x-button-label;" ;@o;;[o;;iO;[o;;iO;["x-hasbadge;@;@o;;iO;[o;;iO;["x-badge;@;@;@;T;[o;,;iP;-;.;["line-height;@;/F;[ ;0i ;o; ;!;";"
+1.6em;0i o;;iS;@;[".x-button-icon;o;;iS;[o;;[o;;iS;[o;;iS;["x-button-icon;" ;@°;@°;T;[o;;iT;@;["&:before;o;;iT;[o;;[o;;iT;[o;1;iT;" o;2
+;iT;["before;!;3;40;@¼;@¼;@¼;T;[o;,;iU;-;.;["font-size;@;/F;[ ;0i ;o; ;!;";"
+1.3emo;,;iV;-;.;["line-height;@;/F;[ ;0i ;o; ;!;";"
+1.3em;0i ;0i ;0i o;;i[;@;i ;[ ;0;[ ;"/* For whatever reason, IE10 multiples before values with existing values!? We need to add lower values
+ * here so it is the correct size. */o;;i];@;["6.x-ie .x-toolbar .x-button .x-button-icon::before;o;;i];[o;;[	o;;i];[o;;i];["	x-ie;" ;@Ýo;;i];[o;;i];["x-toolbar;@Ý;@Ýo;;i];[o;;i];["x-button;@Ý;@Ýo;;i];[o;;i];["x-button-icon;@Ýo;2
+;i];["before;!:element;40;@Ý;@Ý;@Ý;T;[o;,;i^;-;.;["font-size;@;/F;[ ;0i ;o; ;!;";"	.6emo;,;i_;-;.;["line-height;@;/F;[ ;0i ;o; ;!;";"1em;0i o;;ic;@;["0.x-button-small,
+.x-toolbar .x-button-small;o;;ic;[o;;[o;;ic;[o;;ic;["x-button-small;" ;@	o;;["
+o;;ic;[o;;ic;["x-toolbar;@	;@	o;;ic;[o;;ic;["x-button-small;@	;@	;@	;T;[
+u;+æ[o:Sass::Script::Variable	:
+@lineid:
+@name"include-border-radius:@options{ :@underscored_name"include_border_radius0[o:Sass::Tree::MixinNode;ie;"border-radius;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:@keywords{ :@children[ :
+@args[o:Sass::Script::Number;ie;{ :@original"
+0.3em:@denominator_units[ :@numerator_units["em:@valuef0.29999999999999999 33o;,;ih;-;.;["padding;@;/F;[ ;0i ;o; ;!;";".2em .4emo;,;ii;-;.;["min-height;@;/F;[ ;0i ;o; ;!;";"0o;;ik;@;[".x-button-label;o;;ik;[o;;[o;;ik;[o;;ik;["x-button-label;" ;@1;@1;T;[o;,;il;-;.;["font-size;@;/F;[ ;0i ;o; ;!;";"	.6em;0i o;;io;@;[".x-button-icon;o;;io;[o;;[o;;io;[o;;io;["x-button-icon;" ;@E;@E;T;[o;,;ip;-;.;["
+width;@;/F;[ ;0i ;o; ;!;";"
+.75emo;,;iq;-;.;["height;@;/F;[ ;0i ;o; ;!;";"
+.75em;0i ;0i o;;iu;@;i ;[ ;0;[ ;"/* Back/Forward buttons */o:Sass::Tree::VariableNode;iv;"shadow-width;@:@guarded0:
+@expro;8;iv;{ ;9"0.045em;:[ ;;["em;f0.044999999999999998 ×
+;[ o;;iv;@;i ;[ ;0;[ ;"+/* Space between tip and its shadow */o;=;iw;"overlap-width;@;>0;?o;8;iw;{ ;9"
+0.2em;:[ ;;["em;f0.20000000000000001 ™š;[ o;;iw;@;i ;[ ;0;[ ;"&/* how far the mask is clipped */o;;iy;@;i ;[ ;0;[ ;"m/* $mask-height: $button-height + $button-stroke-weight * 2; // Ugh, this is non-specific... borders? */o;=;iz;"mask-height;@;>0;?o;)	;iz;"button-height;{ ;*"button_height;[ o;=;i{;"mask-width;@;>0;?o:Sass::Script::Operation
+;i{;{ :@operand2o;8;i{;@;9"	2.23;:[ ;;[ ;f2.23 £×:@operand1o;)	;i{;"mask-height;@;*"mask_height:@operator:div;[ o;=;i};"mask-offset;@;>0;?o;@
+;i};{ ;Ao;8;i};@Ž;9"	0.02;:@„;;[ ;f0.02 {;Bo;@
+;i};@Ž;Ao;)	;i};"shadow-width;@Ž;*"shadow_width;Bo;@
+;i};@Ž;Ao;)	;i};"overlap-width;@Ž;*"overlap_width;Bo;)	;i};"button-radius;@Ž;*"button_radius;C:
+minus;C:	plus;C;E;[ o;=;i;"tip-width;@;>0;?o;@
+;i;{ ;Ao;)	;i;"shadow-width;@¢;*"shadow_width;Bo;@
+;i;@¢;Ao;)	;i;"mask-offset;@¢;*"mask_offset;Bo;)	;i;"mask-width;@¢;*"mask_width;C;E;C;F;[ o;;i};@;["&.x-button-forward,
+.x-button-back;o;;i};[o;;[o;;i};[o;;i};["x-button-forward;" ;@ºo;;["
+o;;i};[o;;i};["x-button-back;@º;@º;@º;T;[	o;,;i~;-;.;["position;@;/F;[ ;0i ;o; ;!;";"relativeo;,;i;-;.;["overflow;@;/F;[ ;0i ;o; ;!;";"visibleo;,;i€;-;.;["height;@;/F;[ ;0i ;o;@
+;i€;{ ;Ao;8;i€;@Õ;9"0.1;:@„;;[ ;f0.10000000000000001 ™š;Bo;)	;i€;"button-height;@Õ;*"button_height;C;Eo;,;i;-;.;["z-index;@;/F;[ ;0i ;o; ;!;";"1;0i o;;i„;@;[".x-webkit;o;;i„;[o;;[o;;i„;[o;;i„;["x-webkit;" ;@ï;@ï;T;[o;;i†;@;["*.x-button-forward,
+    .x-button-back;o;;i†;[o;;[o;;i†;[o;;i†;["x-button-forward;" ;@ýo;;["
+o;;i†;[o;;i†;["x-button-back;@ý;@ý;@ý;T;[o;;i‡;@;["&:before, &:after;o;;i‡;[o;;[o;;i‡;[o;1;i‡;" o;2
+;i‡;["before;!;3;40;@;@o;;[o;;i‡;[o;1;i‡;@o;2
+;i‡;["
+after;!;3;40;@;@;@;T;[o;;iˆ;"insertion;@;{ ;[ ;[	o;8;iˆ;{ ;9"	15px;:[ ;;["px;io; 	;iˆ;!;";@$;"	autoo;8;iˆ;@$;9"	-2px;:[ ;;["px;iùo; 	;iˆ;!;";@$;"	autoo;,;i‰;-;.;["bottom;@;/F;[ ;0i ;o;8;i‰;{ ;9"	-2px;:[ ;;["px;iùo;,;iŠ;-;.;["z-index;@;/F;[ ;0i ;o; ;!;";"2o;,;i‹;-;.;["-webkit-mask;@;/F;[ ;0i ;o;5	;i‹;{ ;6;7;[	o;8;i‹;@G;9"4px;:[ ;;["px;i	o;8;i‹;@G;9"0;:@„;;[ ;i o:Sass::Script::Funcall
+;i‹;"theme_image;@G;{ ;[o; 	;i‹;!:string;@G;"defaulto; 	;i‹;!;H;@G;"tip2_left.pngo; 	;i‹;!;";@G;"no-repeato;,;iŒ;-;.;["-webkit-mask-size;@;/F;[ ;0i ;o; ;!;";"15px 100%o;,;i;-;.;["overflow;@;/F;[ ;0i ;o; ;!;";"hidden;0i ;0i ;0i o;;i’;@;[".x-webkit;o;;i’;[o;;[o;;i’;[o;;i’;["x-webkit;" ;@s;@s;T;[o;;i”;@;["2.x-button-back,
+    .x-toolbar .x-button-back;o;;i”;[o;;[o;;i”;[o;;i”;["x-button-back;" ;@o;;["
+o;;i”;[o;;i”;["x-toolbar;@;@o;;i”;[o;;i”;["x-button-back;@;@;@;T;[	o;,;i•;-;.;["margin-left;@;/F;[ ;0i ;o;@
+;i•;{ ;Ao;8;i•;@•;9"	0.01;:@„;;[ ;f0.01 {;Bo;@
+;i•;@•;Ao;)	;i•;"toolbar-spacing;@•;*"toolbar_spacing;Bo;@
+;i•;@•;Ao;)	;i•;"shadow-width;@•;*"shadow_width;Bo;)	;i•;"tip-width;@•;*"tip_width;C;E;C;F;C;Eo;,;i–;-;.;["padding-left;@;/F;[ ;0i ;o; ;!;";"	.4emo;;i˜;@;["&:before;o;;i˜;[o;;[o;;i˜;[o;1;i˜;" o;2
+;i˜;["before;!;3;40;@µ;@µ;@µ;T;[o;,;i™;-;.;["	left;@;/F;[ ;0i ;o;8;i™;{ ;9"
+-15px;:[ ;;["px;iì;0i o;;iœ;@;["&:after;o;;iœ;[o;;[o;;iœ;[o;1;iœ;" o;2
+;iœ;["
+after;!;3;40;@Î;@Î;@Î;T;[o;,;i;-;.;["	left;@;/F;[ ;0i ;o;8;i;{ ;9"
+-14px;:[ ;;["px;ií;0i ;0i o;;i¢;@;["8.x-button-forward,
+    .x-toolbar .x-button-forward;o;;i¢;[o;;[o;;i¢;[o;;i¢;["x-button-forward;" ;@éo;;["
+o;;i¢;[o;;i¢;["x-toolbar;@é;@éo;;i¢;[o;;i¢;["x-button-forward;@é;@é;@é;T;[
+o;,;i£;-;.;["margin-right;@;/F;[ ;0i ;o;@
+;i£;{ ;Ao;)	;i£;"toolbar-spacing;@ý;*"toolbar_spacing;Bo;@
+;i£;@ý;Ao;)	;i£;"shadow-width;@ý;*"shadow_width;Bo;)	;i£;"tip-width;@ý;*"tip_width;C;E;C;Fo;,;i¤;-;.;["padding-right;@;/F;[ ;0i ;o; ;!;";"	.4emo;;i§;@;["&:before,
+        &:after;o;;i§;[o;;[o;;i§;[o;1;i§;" o;2
+;i§;["before;!;3;40;@;@o;;["
+o;;i§;[o;1;i§;@o;2
+;i§;["
+after;!;3;40;@;@;@;T;[o;,;i¨;-;.;["-webkit-mask;@;/F;[ ;0i ;o;5	;i¨;{ ;6;7;[	o;8;i¨;@+;9"	-4px;:[ ;;["px;i÷o;8;i¨;@+;9"0;:@„;;[ ;i o;G
+;i¨;"theme_image;@+;{ ;[o; 	;i¨;!;H;@+;"defaulto; 	;i¨;!;H;@+;"tip2_right.pngo; 	;i¨;!;";@+;"no-repeato;,;i©;-;.;["-webkit-mask-size;@;/F;[ ;0i ;o; ;!;";"15px 100%;0i o;;i¬;@;["&:before;o;;i¬;[o;;[o;;i¬;[o;1;i¬;" o;2
+;i¬;["before;!;3;40;@O;@O;@O;T;[o;,;i­;-;.;["
+right;@;/F;[ ;0i ;o;8;i­;{ ;9"
+-15px;:[ ;;["px;iì;0i o;;i°;@;["&:after;o;;i°;[o;;[o;;i°;[o;1;i°;" o;2
+;i°;["
+after;!;3;40;@h;@h;@h;T;[o;,;i±;-;.;["
+right;@;/F;[ ;0i ;o;8;i±;{ ;9"
+-14px;:[ ;;["px;ií;0i ;0i ;0i o;;i¶;@;i ;[ ;0;[ ;"k/* Plain buttons automatically use a margin trick to have a
+ * wide gradial glow for pressed state. */o;;i¹;@;["B.x-button.x-button-plain,
+.x-toolbar .x-button.x-button-plain;o;;i¹;[o;;[o;;i¹;[o;;i¹;["x-button;" o;;i¹;["x-button-plain;@‡;@‡o;;["
+o;;i¹;[o;;i¹;["x-toolbar;@‡;@‡o;;i¹;[o;;i¹;["x-button;@‡o;;i¹;["x-button-plain;@‡;@‡;@‡;T;[o;,;iº;-;.;["background;@;/F;[ ;0i ;o; ;!;";"	noneo;,;i»;-;.;["border;@;/F;[ ;0i ;o; ;!;";"0 noneo;,;i¼;-;.;["min-height;@;/F;[ ;0i ;o; ;!;";"0o;,;i½;-;.;["text-shadow;@;/F;[ ;0i ;o; ;!;";"	noneo;,;i¾;-;.;["line-height;@;/F;[ ;0i ;o; ;!;";"	autoo;,;i¿;-;.;["height;@;/F;[ ;0i ;o; ;!;";"
+1.9emo;,;iÀ;-;.;["padding;@;/F;[ ;0i ;o; ;!;";"0 0.5emu;+ª[o:Sass::Script::Variable	:
+@lineiÂ:
+@name"include-border-radius:@options{ :@underscored_name"include_border_radius0[o:Sass::Tree::MixinNode;iÃ;"border-radius;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:@keywords{ :@children[ :
+@args[o:Sass::Script::String	;iÃ:
+@type:identifier;{ :@value"	noneo;;iÆ;@;["
+& > *;o;;iÆ;[o;;[o;;iÆ;[o;1;iÆ;" ;@Ñ">o;;iÆ;[o:Sass::Selector::Universal;iÆ;@Ñ:@namespace0;@Ñ;@Ñ;T;[o;,;iÇ;-;.;["overflow;@;/F;[ ;0i ;o; ;!;";"visible;0i o;;iÊ;@;[",&.x-button-pressing, &.x-button-pressed;o;;iÊ;[o;;[o;;iÊ;[o;1;iÊ;" o;;iÊ;["x-button-pressing;@ç;@ço;;[o;;iÊ;[o;1;iÊ;@ço;;iÊ;["x-button-pressed;@ç;@ç;@ç;T;[o;,;iË;-;.;["background;@;/F;[ ;0i ;o; ;!;";"	noneo;=;iÍ;"mask-radial-glow;@;>0;?o;G
+;iÍ;"lighten;{ ;{ ;[o;)	;iÍ;"active-color;@þ;*"active_coloro;8;iÍ;@þ;9"50%;:[ ;;["%;i7;[ o;;iÎ;"background-image;@;{ ;[ ;[o;G
+;iÎ;"radial-gradient;{ ;{ ;[o;G
+;iÎ;"fade-out;@;{ ;[o;)	;iÎ;"mask-radial-glow;@;*"mask_radial_glowo;8;iÎ;@;9"0.3;:@„;;[ ;f0.29999999999999999 33o;5	;iÎ;@;6;7;[o;G
+;iÎ;"fade-out;@;{ ;[o;)	;iÎ;"mask-radial-glow;@;*"mask_radial_glowo;8;iÎ;@;9"1;:@„;;[ ;io;8;iÎ;@;9"	24px;:[ ;;["px;i;0i ;0i o;;iÓ;@;i ;[ ;0;[ ;"/* SegmentedButtons */o;;iÔ;@;["!.x-segmentedbutton .x-button;o;;iÔ;[o;;[o;;iÔ;[o;;iÔ;["x-segmentedbutton;" ;@@o;;iÔ;[o;;iÔ;["x-button;@@;@@;@@;T;[o;,;iÕ;-;.;["margin;@;/F;[ ;0i ;o; ;!;";"0u;+A[o:Sass::Script::Variable	:
+@linei×:
+@name"include-border-radius:@options{ :@underscored_name"include_border_radius0[o:Sass::Tree::MixinNode;iØ;"border-radius;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:@keywords{ :@children[ :
+@args[o:Sass::Script::Number;iØ;{ :@original"0:@denominator_units[ :@numerator_units[ :@valuei o:Sass::Tree::RuleNode;iÚ;@:
+@rule["&.x-first:@parsed_ruleso:"Sass::Selector::CommaSequence;iÚ:@members[o:Sass::Selector::Sequence;[o:#Sass::Selector::SimpleSequence;iÚ;[o:Sass::Selector::Parent;iÚ:@filename" o:Sass::Selector::Class;iÚ;["x-first;@";@";@":@has_childrenT;[o;
+;iÛ;"border-left-radius;@;{ ;[ ;[o; 	;iÛ;"button-radius;{ ;	"button_radius:
+@tabsi o;;iÞ;@;["&.x-last;o;;iÞ;[o;;[o;;iÞ;[o;;iÞ;" o;;iÞ;["x-last;@:;@:;@:; T;[o;
+;iß;"border-right-radius;@;{ ;[ ;[o; 	;iß;"button-radius;{ ;	"button_radius;!i o;;iã;@;["&:not(.x-first);o;;iã;[o;;[o;;iã;[o;1;iã;" o:(Sass::Selector::SelectorPseudoClass	;iã;"not:@selectoro;;[o;;[o;;[o;;["x-first;@X;@X;@X;T;[o;,;iä;-;.;["border-left;@;/F;[ ;0i ;o; ;!;";"0;0i ;0i o;;iè;@;i ;[ ;0;[ ;"/* Badges */o;=;ié;"badge-size;@;>"!default;?o;8;ié;{ ;9"2em;:[ ;;["em;i;[ o;=;iê;"badge-radius;@;>"!default;?o;8;iê;{ ;9"
+0.2em;:[ ;;["em;f0.20000000000000001 ™š;[ o;=;ië;"badge-bg-color;@;>"!default;?o;G
+;ië;"darken;{ ;{ ;[o;)	;ië;"alert-color;@‰;*"alert_coloro;8;ië;@‰;9"10%;:[ ;;["%;i;[ o;=;iì;"badge-bg-gradient;@;>"!default;?o;)	;iì;"base-gradient;{ ;*"base_gradient;[ o;;iî;@;[".x-hasbadge;o;;iî;[o;;[o;;iî;[o;;iî;["x-hasbadge;" ;@©;@©;T;[o;,;iï;-;.;["overflow;@;/F;[ ;0i ;o; ;!;";"visibleo;;iñ;@;[".x-badge;o;;iñ;[o;;[o;;iñ;[o;;iñ;["x-badge;" ;@½;@½;T;[o:Sass::Tree::ExtendNode	;iò;@;L["."x-button-label;[ o;,;iô;-;.;["border-color;@;/F;[ ;0i ;o;G
+;iô;"darken;{ ;{ ;[o;)	;iô;"badge-bg-color;@Ê;*"badge_bg_coloro;8;iô;@Ê;9"10%;:[ ;;["%;io;,;iõ;-;.;["min-width;@;/F;[ ;0i ;o;)	;iõ;"badge-size;{ ;*"badge_sizeo;,;iö;-;.;["line-height;@;/F;[ ;0i ;o; ;!;";"
+1.2emo;,;i÷;-;.;["top;@;/F;[ ;0i ;o;8;i÷;{ ;9"-0.2em;:[ ;;["em;f-0.20000000000000001 ™šo;,;iø;-;.;["padding;@;/F;[ ;0i ;o; ;!;";".1em .3emo;;iú;"background-clip;@;{ ;[ ;[o; 	;iú;!;";{ ;"padding-boxo;;iû;"color-by-background;@;{"contrasto;8;iû;{ ;9"50%;:[ ;;["%;i7;[ ;[o;)	;iû;"badge-bg-color;@;*"badge_bg_coloro;;iü;"background-gradient;@;{ ;[ ;[o;)	;iü;"badge-bg-color;{ ;*"badge_bg_coloro;)	;iü;"badge-bg-gradient;@;*"badge_bg_gradientu;+•[o:Sass::Script::Variable	:
+@lineiþ:
+@name"include-border-radius:@options{ :@underscored_name"include_border_radius0[o:Sass::Tree::MixinNode;iÿ;"border-radius;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:@keywords{ :@children[ :
+@args[o; 	;iÿ;"badge-radius;{ ;	"badge_radiusu;+[o:Sass::Script::Variable	:
+@linei:
+@name"include-button-highlights:@options{ :@underscored_name"include_button_highlights0[o:Sass::Tree::MixinNode;i;"bevel-by-background;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:@keywords{ :@children[ :
+@args[o; 	;i;"badge-bg-color;{ ;	"badge_bg_coloro;
+;i;"box-shadow;@;{ ;[ ;[o:Sass::Script::List	;i;{ :@separator:
+space:@value[	o:Sass::Script::Funcall
+;i;"	rgba;@;{ ;[o:Sass::Script::Color	;i:@attrs{	:
+alphai:
+greeni :	bluei :redi ;@;0o:Sass::Script::Number;i;@:@original"0.5:@denominator_units[ :@numerator_units[ ;f0.5o;;i;@;"0;@';[ ;i o;;i;@;"
+0.1em;[ ;["em;f0.10000000000000001 ™šo;;i;@;"
+0.1em;[ ;["em;f0.10000000000000001 ™š;0i ;0i u;+ø[o:Sass::Script::Variable	:
+@linei	:
+@name"include-default-icons:@options{ :@underscored_name"include_default_icons0[ o:Sass::Tree::MixinNode;i
+;"	icon;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:@keywords{ :@children[ :
+@args[o:Sass::Script::String	;i
+:
+@type:string;{ :@value"calendaro;
+;i;"	icon;@;{ ;[ ;[o;	;i;;;{ ;"actiono;
+;i;"	icon;@;{ ;[ ;[o;	;i;;;{ ;"addo;
+;i;"	icon;@;{ ;[ ;[o;	;i;;;{ ;"arrow_downo;
+;i;"	icon;@;{ ;[ ;[o;	;i;;;{ ;"arrow_lefto;
+;i;"	icon;@;{ ;[ ;[o;	;i;;;{ ;"arrow_righto;
+;i;"	icon;@;{ ;[ ;[o;	;i;;;{ ;"arrow_upo;
+;i;"	icon;@;{ ;[ ;[o;	;i;;;{ ;"composeo;
+;i;"	icon;@;{ ;[ ;[o;	;i;;;{ ;"deleteo;
+;i;"	icon;@;{ ;[ ;[o;	;i;;;{ ;"organizeo;
+;i;"	icon;@;{ ;[ ;[o;	;i;;;{ ;"refresho;
+;i;"	icon;@;{ ;[ ;[o;	;i;;;{ ;"
+replyo;
+;i;"	icon;@;{ ;[ ;[o;	;i;;;{ ;"searcho;
+;i;"	icon;@;{ ;[ ;[o;	;i;;;{ ;"settingso;
+;i;"	icon;@;{ ;[ ;[o;	;i;;;{ ;"	staro;
+;i;"	icon;@;{ ;[ ;[o;	;i;;;{ ;"
+trasho;
+;i;"	icon;@;{ ;[ ;[o;	;i;;;{ ;"	mapso;
+;i;"	icon;@;{ ;[ ;[o;	;i;;;{ ;"locateo;
+;i;"	icon;@;{ ;[ ;[o;	;i;;;{ ;"	homeo;
+;i;"	icon;@;{ ;[ ;[o;	;i;;;{ ;"bookmarkso;
+;i;"	icon;@;{ ;[ ;[o;	;i;;;{ ;"downloado;
+;i;"	icon;@;{ ;[ ;[o;	;i;;;{ ;"favoriteso;
+;i ;"	icon;@;{ ;[ ;[o;	;i ;;;{ ;"	infoo;
+;i!;"	icon;@;{ ;[ ;[o;	;i!;;;{ ;"	moreo;
+;i";"	icon;@;{ ;[ ;[o;	;i";;;{ ;"	timeo;
+;i#;"	icon;@;{ ;[ ;[o;	;i#;;;{ ;"	usero;
+;i$;"	icon;@;{ ;[ ;[o;	;i$;;;{ ;"	teamo;;i';@;0;[ ;0;[ ;"/**
+ * Creates a theme UI for buttons.
+ * Also automatically generates UIs for {ui-label}-round and {ui-label}-small.
+ *
+ *     // SCSS
+ *     @include sencha-button-ui('secondary', #99A4AE, 'glossy');
+ *
+ *     // JS
+ *     var cancelBtn = new Ext.Button({text: 'Cancel', ui: 'secondary'});
+ *
+ * @param {string} $ui-label The name of the UI being created.
+ *   Can not included spaces or special punctuation (used in class names)
+ * @param {color} $color Base color for the UI.
+ * @param {string} $gradient Default gradient for the UI.
+ */o:Sass::Tree::MixinDefNode;i6;"sencha-button-ui;@;T;[o;;i9;@;[".x-button.x-button-o;)	;i7;"ui-label;{ ;*"ui_label",
+    .x-button.x-button-o;)	;i8;"ui-label;{ ;*"ui_label"$-round,
+    .x-button.x-button-o;)	;i9;"ui-label;{ ;*"ui_label"-small;T;[o;;i:;"toolbar-button;@;{ ;[ ;[o;)	;i:;"
+color;{ ;*"
+coloro;)	;i:;"gradient;@;;*"gradient;0i u;+ï[o:Sass::Script::Variable	:
+@linei=:
+@name"include-border-radius:@options{ :@underscored_name"include_border_radius0[o:Sass::Tree::RuleNode;i>;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@rule[".x-button.x-button-o; 	;i>;"ui-label;{ ;	"ui_label"-round:@has_childrenT:@children[o:Sass::Tree::ExtendNode	;i?;@:@selector["."x-button-round;[ :
+@tabsi o;;iC;@;[".x-button.x-button-o;)	;iC;"ui-label;{ ;*"ui_label"-small;T;[o;M	;iD;@;L["."x-button-small;[ ;0i ;[[o;);"ui-label;{ ;*"ui_label0[o;);"
+color;@S;*"
+color0[o;);"gradient;@S;*"gradiento;)	;i6;"button-gradient;@S;*"button_gradientu;+2[o:Sass::Script::Variable	:
+@lineiH:
+@name"include-button-uis:@options{ :@underscored_name"include_button_uis0[o:Sass::Tree::MixinNode;iI;"sencha-button-ui;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:@keywords{ :@children[ :
+@args[o:Sass::Script::String	;iI:
+@type:string;{ :@value"actiono; 	;iI;"active-color;@;	"active_coloro;
+;iJ;"sencha-button-ui;@;{ ;[ ;[o;	;iJ;;;{ ;"confirmo:Sass::Script::Funcall
+;iJ;"desaturate;@;{ ;[o;
+;iJ;"darken;@;{ ;[o; 	;iJ;"confirm-color;@;	"confirm_coloro:Sass::Script::Number;iJ;@:@original"10%:@denominator_units[ :@numerator_units["%;io;;iJ;@;"5%;[ ;["%;i
+o;
+;iK;"sencha-button-ui;@;{ ;[ ;[o;	;iK;;;{ ;"declineo;
+;iK;"desaturate;@<;{ ;[o;
+;iK;"darken;@<;{ ;[o; 	;iK;"alert-color;@<;	"alert_coloro;;iK;@<;"10%;[ ;["%;io;;iK;@<;"5%;[ ;["%;i

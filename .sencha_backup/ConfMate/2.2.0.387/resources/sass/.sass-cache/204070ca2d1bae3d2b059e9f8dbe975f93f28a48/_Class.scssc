@@ -1,0 +1,1675 @@
+3.1.0 (Brainy Betty)
+023b1b9d132e42c9f87e279bdaf7f775229bb696
+o:Sass::Tree::RootNode
+:
+@linei:@options{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:@has_childrenT:@template"ä:/**
+ * @class Global_CSS
+ */
+
+/**
+ * Adds basic styles to :before or :after pseudo-elements.
+ *
+ *     .my-element:after {
+ *       @include insertion(50px, 50px);
+ *     }
+ *
+ * @param {measurement} $width Height of pseudo-element.
+ * @param {measurement} $height Height of pseudo-element.
+ * @param {measurement} $top Top positioning of pseudo-element.
+ * @param {measurement} $left Left positioning of pseudo-element.
+ *
+ */
+@mixin insertion($width: 30px, $height: 30px, $top: 0, $left: 0) {
+    content: '';
+    position: absolute;
+    width: $width;
+    height: $height;
+    top: $top;
+    left: $left;
+}
+
+/**
+ * Makes the element text overflow to use ellipsis.
+ */
+@mixin ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@mixin absolute-position($top: 0, $right: 0, $bottom: 0, $left: 0) {
+    position: absolute;
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+}
+
+@mixin absolute-fit {
+    width: auto;
+    height: auto;
+    @include absolute-position;
+}
+
+@mixin st-box($important: no) {
+    @if $important == important {
+        display: -webkit-box !important;
+        display: -ms-flexbox !important;
+        display: flex !important;
+    } @else {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+    }
+}
+
+@mixin st-box-align($align: stretch) {
+    -webkit-box-align: $align;
+    -ms-flex-align: $align;
+    @if $align == start {
+        align-items: flex-start;
+    }
+    @else if $align == end {
+        align-items: flex-end;
+    }
+    @else {
+        align-items: $align;
+    }
+}
+
+@mixin st-box-orient($orient: horizontal, $important: no) {
+    @if $important == important {
+        -webkit-box-orient: $orient !important;
+        @if $orient == horizontal {
+            -ms-flex-direction: row !important;
+            flex-direction: row !important;
+        } @else {
+            -ms-flex-direction: column !important;
+            flex-direction: column !important;
+        }
+    } @else {
+        -webkit-box-orient: $orient;
+        @if $orient == horizontal {
+            -ms-flex-direction: row;
+            flex-direction: row;
+        } @else {
+            -ms-flex-direction: column;
+            flex-direction: column;
+        }
+    }
+}
+
+@mixin st-box-pack($pack: start, $important: no) {
+    @if $important == important {
+        -webkit-box-pack: $pack !important;
+        -ms-flex-pack: $pack !important;
+        @if $pack == start {
+            justify-content: flex-start !important;
+        }
+        @else if $pack == end {
+            justify-content: flex-end !important;
+        }
+        @else if $pack == justify {
+            justify-content: space-between !important;
+        }
+        @else {
+            justify-content: $pack !important;
+        }
+    } @else {
+        -webkit-box-pack: $pack;
+        -ms-flex-pack: $pack;
+        @if $pack == start {
+            justify-content: flex-start;
+        }
+        @else if $pack == end {
+            justify-content: flex-end;
+        }
+        @else if $pack == justify {
+            justify-content: space-between;
+        }
+        @else if $pack == center {
+            justify-content: center;
+        }
+        @else {
+            justify-content: $pack;
+        }
+    }
+}
+
+@mixin st-box-flex($flex: 1, $preferredSize: auto, $important: no) {
+    @if $important == important {
+        -webkit-box-flex: $flex !important;
+        -ms-flex: $flex 0 $preferredSize !important;
+        flex: $flex 0 $preferredSize !important;
+    } @else {
+        -webkit-box-flex: $flex;
+        -ms-flex: $flex 0 $preferredSize;
+        flex: $flex 0 $preferredSize;
+    }
+}
+
+@mixin st-box-shadow($shadow: none) {
+    -webkit-box-shadow: $shadow;
+    box-shadow: $shadow;
+}
+
+@mixin st-box-direction($direction: normal, $orientation: row) {
+    -webkit-box-direction: $direction;
+    @if $direction == reverse {
+        @if $orientation == row {
+            -ms-flex-direction: row-reverse;
+            flex-direction: row-reverse;
+        } @else {
+            -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+        }
+    } @else {
+        @if $orientation == row {
+            -ms-flex-direction: row;
+            flex-direction: row;
+        } @else {
+            -ms-flex-direction: column;
+            flex-direction: column;
+        }
+    }
+}
+
+@mixin st-loading-spinner($spinner-size: 50px, $color: #ccc, $bar-width: 5px, $bar-height: 15px) {
+    .x-loading-spinner {
+        font-size: 250%;
+        height: $spinner-size;
+        width: $spinner-size;
+        position: relative;
+
+        -webkit-transform-origin: $spinner-size/2 $spinner-size/2;
+        transform-origin: $spinner-size/2 $spinner-size/2;
+
+        /* Shared Properties for all the bars */
+        & > span,
+        & > span:before,
+        & > span:after {
+            display: block;
+            position: absolute;
+            width: $bar-width;
+            height: $bar-height;
+            top: 0;
+            -webkit-transform-origin: $bar-width/2 $spinner-size/2;
+            transform-origin: $bar-width/2 $spinner-size/2;
+            content: " ";
+        }
+
+        & > span {
+            left:         50%;
+            margin-left:  -0.05em;
+
+            &.x-loading-top           { background-color: rgba($color, 0.99); }
+            &.x-loading-top::after    { background-color: rgba($color, 0.90); }
+            &.x-loading-left::before  { background-color: rgba($color, 0.80); }
+            &.x-loading-left          { background-color: rgba($color, 0.70); }
+            &.x-loading-left::after   { background-color: rgba($color, 0.60); }
+            &.x-loading-bottom::before{ background-color: rgba($color, 0.50); }
+            &.x-loading-bottom        { background-color: rgba($color, 0.40); }
+            &.x-loading-bottom::after { background-color: rgba($color, 0.35); }
+            &.x-loading-right::before { background-color: rgba($color, 0.30); }
+            &.x-loading-right         { background-color: rgba($color, 0.25); }
+            &.x-loading-right::after  { background-color: rgba($color, 0.20); }
+            &.x-loading-top::before   { background-color: rgba($color, 0.15); }
+        }
+    }
+
+    /* Rotate each of the 4 Spans */
+    .x-loading-spinner > span.x-loading-top {    -webkit-transform: rotate(0deg);    -moz-transform: rotate(0deg);   -ms-transform: rotate(0deg); }
+    .x-loading-spinner > span.x-loading-right {  -webkit-transform: rotate(90deg);   -moz-transform: rotate(90deg);  -ms-transform: rotate(90deg); }
+    .x-loading-spinner > span.x-loading-bottom { -webkit-transform: rotate(180deg);  -moz-transform: rotate(180deg); -ms-transform: rotate(180deg); }
+    .x-loading-spinner > span.x-loading-left {   -webkit-transform: rotate(270deg);  -moz-transform: rotate(270deg); -ms-transform: rotate(270deg); }
+
+    /* These are the two lines that surround each of the 4 Span lines */
+    .x-loading-spinner > span::before {-webkit-transform: rotate(30deg);   -moz-transform: rotate(30deg);  -ms-transform: rotate(30deg); }
+    .x-loading-spinner > span::after { -webkit-transform: rotate(-30deg);  -moz-transform: rotate(-30deg); -ms-transform: rotate(-30deg); }
+
+    /* Set Animation */
+    .x-loading-spinner {
+        -webkit-animation-name: x-loading-spinner-rotate;
+        -webkit-animation-duration: .5s;
+        -webkit-animation-iteration-count: infinite;
+        -webkit-animation-timing-function: linear;
+
+        animation-name: x-loading-spinner-rotate;
+        animation-duration: .5s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+    }
+}
+
+/**
+ * Includes an icon to be used on Button or Tab components. The $name is the name of the icon, or the character
+ * of the font being used.
+ *
+ *     @include icon('attachment');
+ *
+ * @param {string} $name The name of the icon to be included. This is then usable as the iconCls in your app.
+ * @param {string} $character The character
+ * @param {string} $font-family The `font-family` used for this icon. Defaults to the `Pictos` font.
+ */
+@mixin icon($name, $character: null, $font-family: null) {
+    $raw_character: icon-character-for-name($name);
+
+    @if $character == null and $raw_character == null {
+        @debug "#icon: icon with name '#{$name}' not found.";
+    }
+
+    @if $character != null or $raw_character != null {
+        .x-tab .x-button-icon.#{$name},
+        .x-button .x-button-icon.#{$name} {
+            &:before {
+                @include absolute-position;
+                text-align: center;
+
+                @if $font-family != null {
+                    font-family: $font-family;
+                }
+
+                @if $character != null {
+                    content: "#{$character}";
+                } @elseif $raw_character != null {
+                    content: "#{$raw_character}";
+                }
+            }
+        }
+    }
+}
+
+@mixin inline-icon($name, $font-family: 'Pictos') {
+  $character: icon-character-for-name($name);
+
+  &:before {
+      @include absolute-position;
+      text-align: center;
+      font-family: $font-family;
+
+      @if $character {
+          content: "#{$character}";
+      } @else {
+          content: "#{$name}";
+      }
+  }
+}
+
+@mixin pictos-iconmask($name) {
+    @warn "pictos-iconmask is deprecated in 2.2. Please use '@include icon($name);' instead.";
+    @include icon($name);
+}
+
+@mixin icon-font($name, $font-files, $eot: false) {
+    @include font-face($name, $font-files, $eot);
+
+    .x-tab .x-button-icon,
+    .x-button .x-button-icon {
+        &:before {
+            font-family: $name;
+        }
+    }
+}
+
+@function icon-character-for-name($name) {
+    // http://pictos.cc/font/
+
+    // Row 1
+    @if ($name == "anchor") { @return "a"; }
+    @else if ($name == "box") { @return "b"; }
+    @else if ($name == "upload") { @return "c"; }
+    @else if ($name == "forbidden") { @return "d"; }
+    @else if ($name == "lightning") { @return "e"; }
+    @else if ($name == "rss") { @return "f"; }
+    @else if ($name == "team") { @return "g"; }
+    @else if ($name == "help") { @return "h"; }
+    @else if ($name == "info") { @return "i"; }
+    @else if ($name == "attachment") { @return "j"; }
+    @else if ($name == "heart") { @return "k"; }
+    @else if ($name == "list") { @return "l"; }
+    @else if ($name == "music") { @return "m"; }
+    @else if ($name == "table") { @return "n"; }
+    @else if ($name == "folder") { @return "o"; }
+    @else if ($name == "pencil") { @return "p"; }
+    @else if ($name == "chat2") { @return "q"; }
+    @else if ($name == "retweet") { @return "r"; }
+    @else if ($name == "search") { @return "s"; }
+    @else if ($name == "time") { @return "t"; }
+    @else if ($name == "switch") { @return "u"; }
+    @else if ($name == "camera") { @return "v"; }
+    @else if ($name == "chat") { @return "w"; }
+    @else if ($name == "settings2") { @return "x"; }
+    @else if ($name == "settings") { @return "y"; }
+    @else if ($name == "tags") { @return "z"; }
+
+    // Row 2
+    @else if ($name == "attachment2") { @return "A"; }
+    @else if ($name == "bird") { @return "B"; }
+    @else if ($name == "cloud") { @return "C"; }
+    @else if ($name == "delete_black1") { @return "D"; }
+    @else if ($name == "eye") { @return "E"; }
+    @else if ($name == "file") { @return "F"; }
+    @else if ($name == "browser") { @return "G"; }
+    @else if ($name == "home") { @return "H"; }
+    @else if ($name == "inbox") { @return "I"; }
+    @else if ($name == "network") { @return "J"; }
+    @else if ($name == "key") { @return "K"; }
+    @else if ($name == "radio") { @return "L"; }
+    @else if ($name == "mail") { @return "M"; }
+    @else if ($name == "news") { @return "N"; }
+    @else if ($name == "case") { @return "O"; }
+    @else if ($name == "photos") { @return "P"; }
+    @else if ($name == "power") { @return "Q"; }
+    @else if ($name == "action") { @return "R"; }
+    @else if ($name == "favorites") { @return "S"; }
+    @else if ($name == "plane") { @return "T"; }
+    @else if ($name == "user") { @return "U"; }
+    @else if ($name == "video") { @return "V"; }
+    @else if ($name == "compose") { @return "W"; }
+    @else if ($name == "truck") { @return "X"; }
+    @else if ($name == "chart2") { @return "Y"; }
+    @else if ($name == "chart") { @return "Z"; }
+
+    // Row 3
+    @else if ($name == "expand") { @return "`"; }
+    @else if ($name == "refresh") { @return "1"; }
+    @else if ($name == "check") { @return "2"; }
+    @else if ($name == "check2") { @return "3"; }
+    @else if ($name == "play") { @return "4"; }
+    @else if ($name == "pause") { @return "5"; }
+    @else if ($name == "stop") { @return "6"; }
+    @else if ($name == "forward") { @return "7"; }
+    @else if ($name == "rewind") { @return "8"; }
+    @else if ($name == "play2") { @return "9"; }
+    @else if ($name == "refresh2") { @return "0"; }
+    @else if ($name == "minus") { @return "-"; }
+    @else if ($name == "battery") { @return "="; }
+    @else if ($name == "left") { @return "["; }
+    @else if ($name == "right") { @return "]"; }
+    @else if ($name == "calendar") { @return "\005C"; }
+    @else if ($name == "shuffle") { @return ";"; }
+    @else if ($name == "wireless") { @return "'"; }
+    @else if ($name == "speedometer") { @return ","; }
+    @else if ($name == "more") { @return "."; }
+    @else if ($name == "print") { @return "/"; }
+
+
+    // Row 4
+    @else if ($name == "download") { @return "~"; }
+    @else if ($name == "warning_black") { @return "!"; }
+    @else if ($name == "locate") { @return "@"; }
+    @else if ($name == "trash") { @return "#"; }
+    @else if ($name == "cart") { @return "$"; }
+    @else if ($name == "bank") { @return "%"; }
+    @else if ($name == "flag") { @return "^"; }
+    @else if ($name == "add") { @return "&"; }
+    @else if ($name == "delete") { @return "*"; }
+    @else if ($name == "lock") { @return "("; }
+    @else if ($name == "unlock") { @return ")"; }
+    @else if ($name == "minus2") { @return "_"; }
+    @else if ($name == "add2") { @return "+"; }
+    @else if ($name == "up") { @return "{"; }
+    @else if ($name == "down") { @return "}"; }
+    @else if ($name == "screens") { @return "|"; }
+    @else if ($name == "bell") { @return ":"; }
+    @else if ($name == "quote") { @return "\""; }
+    @else if ($name == "volume_mute") { @return "<"; }
+    @else if ($name == "volume") { @return ">"; }
+    @else if ($name == "help") { @return "?"; }
+
+    // Backwards compat; icons that are not in the font
+    @else if ($name == "arrow_left") { @return "["; }
+    @else if ($name == "arrow_right") { @return "]"; }
+    @else if ($name == "arrow_up") { @return "{"; }
+    @else if ($name == "arrow_down") { @return "}"; }
+    @else if ($name == "organize") { @return "I"; }
+    @else if ($name == "bookmarks") { @return "I"; }
+    @else if ($name == "loop2") { @return "r"; }
+    @else if ($name == "star") { @return "S"; }
+    @else if ($name == "maps") { @return "@"; }
+    @else if ($name == "reply") { @return "R"; }
+
+    @else {
+        @return null;
+    }
+}
+
+$include-pictos-font: true !default;:@children[o:Sass::Tree::CommentNode;i;@:@silent0:@lines[ :
+@loud0;[ :@value"!/**
+ * @class Global_CSS
+ */o;;i
+;@;0;[ ;0;[ ;"/**
+ * Adds basic styles to :before or :after pseudo-elements.
+ *
+ *     .my-element:after {
+ *       @include insertion(50px, 50px);
+ *     }
+ *
+ * @param {measurement} $width Height of pseudo-element.
+ * @param {measurement} $height Height of pseudo-element.
+ * @param {measurement} $top Top positioning of pseudo-element.
+ * @param {measurement} $left Left positioning of pseudo-element.
+ *
+ */o:Sass::Tree::MixinDefNode;i:
+@name"insertion;@;T;[o:Sass::Tree::PropNode;i:@prop_syntax:new;["content;@:@importantF;[ :
+@tabsi ;o:Sass::Script::String:
+@type:identifier;"''o;;i;;;["position;@;F;[ ;i ;o;;;;"absoluteo;;i;;;["
+width;@;F;[ ;i ;o:Sass::Script::Variable	;i;"
+width;{ :@underscored_name"
+widtho;;i;;;["height;@;F;[ ;i ;o;	;i;"height;{ ;"heighto;;i;;;["top;@;F;[ ;i ;o;	;i;"top;{ ;"topo;;i;;;["	left;@;F;[ ;i ;o;	;i;"	left;{ ;"	left:
+@args[	[o;;"
+width;{ ;"
+widtho:Sass::Script::Number;i;@F:@original"	30px:@denominator_units[ :@numerator_units["px;i#[o;;"height;@F;"heighto; ;i;@F;!"	30px;"[ ;#["px;i#[o;;"top;@F;"topo; ;i;@F;!"0;"[ ;#[ ;i [o;;"	left;@F;"	lefto; ;i;@F;!"0;"@\;#[ ;i o;;i ;@;0;[ ;0;[ ;"@/**
+ * Makes the element text overflow to use ellipsis.
+ */o;;i#;"ellipsis;@;T;[o;;i$;;;["white-space;@;F;[ ;i ;o;;;;"nowrapo;;i%;;;["overflow;@;F;[ ;i ;o;;;;"hiddeno;;i&;;;["text-overflow;@;F;[ ;i ;o;;;;"ellipsis;[ o;;i);"absolute-position;@;T;[
+o;;i*;;;["position;@;F;[ ;i ;o;;;;"absoluteo;;i+;;;["top;@;F;[ ;i ;o;	;i+;"top;{ ;"topo;;i,;;;["
+right;@;F;[ ;i ;o;	;i,;"
+right;{ ;"
+righto;;i-;;;["bottom;@;F;[ ;i ;o;	;i-;"bottom;{ ;"bottomo;;i.;;;["	left;@;F;[ ;i ;o;	;i.;"	left;{ ;"	left;[	[o;;"top;{ ;"topo; ;i);@§;!"0;"@\;#[ ;i [o;;"
+right;@§;"
+righto; ;i);@§;!"0;"@\;#[ ;i [o;;"bottom;@§;"bottomo; ;i);@§;!"0;"@\;#[ ;i [o;;"	left;@§;"	lefto; ;i);@§;!"0;"@\;#[ ;i o;;i1;"absolute-fit;@;T;[o;;i2;;;["
+width;@;F;[ ;i ;o;;;;"	autoo;;i3;;;["height;@;F;[ ;i ;o;;;;"	autoo:Sass::Tree::MixinNode;i4;"absolute-position;@:@keywords{ ;[ ;[ ;[ o;;i7;"st-box;@;T;[u:Sass::Tree::IfNode1[o:Sass::Script::Operation
+:
+@linei8:@options{ :@operand2o:Sass::Script::String	;i8:
+@type:identifier;@:@value"important:@operand1o:Sass::Script::Variable	;i8:
+@name"important;@:@underscored_name"important:@operator:equ:Sass::Tree::IfNodeÍ[00[o:Sass::Tree::PropNode:
+@linei=:@prop_syntax:new:
+@name["display:@options{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:@importantF:@children[ :
+@tabsi :@valueo:Sass::Script::String:
+@type:identifier;"-webkit-boxo; ;i>;;;	["display;
+@
+;F;[ ;i ;o;;;;"-ms-flexboxo; ;i?;;;	["display;
+@
+;F;[ ;i ;o;;;;"	flex[o:Sass::Tree::PropNode;i9:@prop_syntax:new;["display;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:@importantF:@children[ :
+@tabsi ;o:Sass::Script::List	;i9;{ :@separator:
+space;[o;		;i9;
+;;@;"-webkit-boxo;		;i9;
+;;@;"!importanto;;i:;;;["display;@;F;[ ;i ;o;	;i:;{ ;;;[o;		;i:;
+;;@";"-ms-flexboxo;		;i:;
+;;@";"!importanto;;i;;;;["display;@;F;[ ;i ;o;	;i;;{ ;;;[o;		;i;;
+;;@-;"	flexo;		;i;;
+;;@-;"!important;[[o;;"important;{ ;"importanto;	;i7;;;@Þ;"noo;;iC;"st-box-align;@;T;[o;;iD;;;["-webkit-box-align;@;F;[ ;i ;o;	;iD;"
+align;{ ;"
+aligno;;iE;;;["-ms-flex-align;@;F;[ ;i ;o;	;iE;"
+align;{ ;"
+alignu;&[o:Sass::Script::Operation
+:
+@lineiF:@options{ :@operand2o:Sass::Script::String	;iF:
+@type:identifier;@:@value"
+start:@operand1o:Sass::Script::Variable	;iF:
+@name"
+align;@:@underscored_name"
+align:@operator:equ:Sass::Tree::IfNoden[o:Sass::Script::Operation
+:
+@lineiI:@options{ :@operand2o:Sass::Script::String	;iI:
+@type:identifier;@:@value"end:@operand1o:Sass::Script::Variable	;iI:
+@name"
+align;@:@underscored_name"
+align:@operator:equ:Sass::Tree::IfNodea[00[o:Sass::Tree::PropNode:
+@lineiM:@prop_syntax:new:
+@name["align-items:@options{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:@importantF:@children[ :
+@tabsi :@valueo:Sass::Script::Variable	;iM;	"
+align;
+{ :@underscored_name"
+align[o:Sass::Tree::PropNode;iJ:@prop_syntax:new;["align-items;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:@importantF:@children[ :
+@tabsi ;o;	;
+;;"flex-end[o:Sass::Tree::PropNode;iG:@prop_syntax:new;["align-items;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:@importantF:@children[ :
+@tabsi ;o;	;
+;;"flex-start;[[o;;"
+align;{ ;"
+aligno;	;iC;;;@ú;"stretcho;;iQ;"st-box-orient;@;T;[u;&[o:Sass::Script::Operation
+:
+@lineiR:@options{ :@operand2o:Sass::Script::String	;iR:
+@type:identifier;@:@value"important:@operand1o:Sass::Script::Variable	;iR:
+@name"important;@:@underscored_name"important:@operator:equ:Sass::Tree::IfNodeu[00[o:Sass::Tree::PropNode:
+@linei\:@prop_syntax:new:
+@name["-webkit-box-orient:@options{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:@importantF:@children[ :
+@tabsi :@valueo:Sass::Script::Variable	;i\;	"orient;
+{ :@underscored_name"orientu:Sass::Tree::IfNodeó[o:Sass::Script::Operation
+:
+@linei]:@options{ :@operand2o:Sass::Script::String	;i]:
+@type:identifier;@:@value"horizontal:@operand1o:Sass::Script::Variable	;i]:
+@name"orient;@:@underscored_name"orient:@operator:equ:Sass::Tree::IfNode›[00[o:Sass::Tree::PropNode:
+@lineia:@prop_syntax:new:
+@name["-ms-flex-direction:@options{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:@importantF:@children[ :
+@tabsi :@valueo:Sass::Script::String:
+@type:identifier;"columno; ;ib;;;	["flex-direction;
+@
+;F;[ ;i ;o;;;;"column[o:Sass::Tree::PropNode;i^:@prop_syntax:new;["-ms-flex-direction;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:@importantF:@children[ :
+@tabsi ;o;	;
+;;"rowo;;i_;;;["flex-direction;@;F;[ ;i ;o;	;
+;;"row[o:Sass::Tree::PropNode;iS:@prop_syntax:new;["-webkit-box-orient;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:@importantF:@children[ :
+@tabsi ;o:Sass::Script::List	;iS;{ :@separator:
+space;[o;	;iS;"orient;@;"oriento;		;iS;
+;;@;"!importantu;[o:Sass::Script::Operation
+:
+@lineiT:@options{ :@operand2o:Sass::Script::String	;iT:
+@type:identifier;@:@value"horizontal:@operand1o:Sass::Script::Variable	;iT:
+@name"orient;@:@underscored_name"orient:@operator:equ:Sass::Tree::IfNode0[00[o:Sass::Tree::PropNode:
+@lineiX:@prop_syntax:new:
+@name["-ms-flex-direction:@options{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:@importantF:@children[ :
+@tabsi :@valueo:Sass::Script::List	;iX;
+{ :@separator:
+space;[o:Sass::Script::String	;iX:
+@type:identifier;
+@;"columno;	;iX;;;
+@;"!importanto; ;iY;;;	["flex-direction;
+@
+;F;[ ;i ;o;	;iY;
+{ ;;;[o;	;iY;;;
+@;"columno;	;iY;;;
+@;"!important[o:Sass::Tree::PropNode;iU:@prop_syntax:new;["-ms-flex-direction;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:@importantF:@children[ :
+@tabsi ;o:Sass::Script::List	;iU;{ :@separator:
+space;[o;		;iU;
+;;@;"rowo;		;iU;
+;;@;"!importanto;;iV;;;["flex-direction;@;F;[ ;i ;o;	;iV;{ ;;;[o;		;iV;
+;;@";"rowo;		;iV;
+;;@";"!important;[[o;;"orient;{ ;"oriento;	;iQ;;;@;"horizontal[o;;"important;@;"importanto;	;iQ;;;@;"noo;;ig;"st-box-pack;@;T;[u;&¢[o:Sass::Script::Operation
+:
+@lineih:@options{ :@operand2o:Sass::Script::String	;ih:
+@type:identifier;@:@value"important:@operand1o:Sass::Script::Variable	;ih:
+@name"important;@:@underscored_name"important:@operator:equ:Sass::Tree::IfNode[00[o:Sass::Tree::PropNode:
+@lineix:@prop_syntax:new:
+@name["-webkit-box-pack:@options{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:@importantF:@children[ :
+@tabsi :@valueo:Sass::Script::Variable	;ix;	"	pack;
+{ :@underscored_name"	packo; ;iy;;;	["-ms-flex-pack;
+@
+;F;[ ;i ;o;	;iy;	"	pack;
+{ ;"	packu:Sass::Tree::IfNode·	[o:Sass::Script::Operation
+:
+@lineiz:@options{ :@operand2o:Sass::Script::String	;iz:
+@type:identifier;@:@value"
+start:@operand1o:Sass::Script::Variable	;iz:
+@name"	pack;@:@underscored_name"	pack:@operator:equ:Sass::Tree::IfNode¤[o:Sass::Script::Operation
+:
+@linei}:@options{ :@operand2o:Sass::Script::String	;i}:
+@type:identifier;@:@value"end:@operand1o:Sass::Script::Variable	;i}:
+@name"	pack;@:@underscored_name"	pack:@operator:equ:Sass::Tree::IfNode•[o:Sass::Script::Operation
+:
+@linei{:@options{ :@operand2o:Sass::Script::String	;i{:
+@type:identifier;@:@value"justify:@operand1o:Sass::Script::Variable	;i{:
+@name"	pack;@:@underscored_name"	pack:@operator:equ:Sass::Tree::IfNodey[o:Sass::Script::Operation
+:
+@linei~:@options{ :@operand2o:Sass::Script::String	;i~:
+@type:identifier;@:@value"center:@operand1o:Sass::Script::Variable	;i~:
+@name"	pack;@:@underscored_name"	pack:@operator:equ:Sass::Tree::IfNodee[00[o:Sass::Tree::PropNode:
+@linei‚:@prop_syntax:new:
+@name["justify-content:@options{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:@importantF:@children[ :
+@tabsi :@valueo:Sass::Script::Variable	;i‚;	"	pack;
+{ :@underscored_name"	pack[o:Sass::Tree::PropNode;i:@prop_syntax:new;["justify-content;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:@importantF:@children[ :
+@tabsi ;o;	;
+;;"center[o:Sass::Tree::PropNode;i|:@prop_syntax:new;["justify-content;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:@importantF:@children[ :
+@tabsi ;o;	;
+;;"space-between[o:Sass::Tree::PropNode;i~:@prop_syntax:new;["justify-content;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:@importantF:@children[ :
+@tabsi ;o;	;
+;;"flex-end[o:Sass::Tree::PropNode;i{:@prop_syntax:new;["justify-content;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:@importantF:@children[ :
+@tabsi ;o;	;
+;;"flex-start[o:Sass::Tree::PropNode;ii:@prop_syntax:new;["-webkit-box-pack;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:@importantF:@children[ :
+@tabsi ;o:Sass::Script::List	;ii;{ :@separator:
+space;[o;	;ii;"	pack;@;"	packo;		;ii;
+;;@;"!importanto;;ij;;;["-ms-flex-pack;@;F;[ ;i ;o;	;ij;{ ;;;[o;	;ij;"	pack;@#;"	packo;		;ij;
+;;@#;"!importantu;$	[o:Sass::Script::Operation
+:
+@lineik:@options{ :@operand2o:Sass::Script::String	;ik:
+@type:identifier;@:@value"
+start:@operand1o:Sass::Script::Variable	;ik:
+@name"	pack;@:@underscored_name"	pack:@operator:equ:Sass::Tree::IfNode¶[o:Sass::Script::Operation
+:
+@linein:@options{ :@operand2o:Sass::Script::String	;in:
+@type:identifier;@:@value"end:@operand1o:Sass::Script::Variable	;in:
+@name"	pack;@:@underscored_name"	pack:@operator:equ:Sass::Tree::IfNodeL[o:Sass::Script::Operation
+:
+@lineiq:@options{ :@operand2o:Sass::Script::String	;iq:
+@type:identifier;@:@value"justify:@operand1o:Sass::Script::Variable	;iq:
+@name"	pack;@:@underscored_name"	pack:@operator:equ:Sass::Tree::IfNodeÙ[00[o:Sass::Tree::PropNode:
+@lineiu:@prop_syntax:new:
+@name["justify-content:@options{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:@importantF:@children[ :
+@tabsi :@valueo:Sass::Script::List	;iu;
+{ :@separator:
+space;[o:Sass::Script::Variable	;iu;	"	pack;
+@:@underscored_name"	packo:Sass::Script::String	;iu:
+@type:identifier;
+@;"!important[o:Sass::Tree::PropNode;ir:@prop_syntax:new;["justify-content;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:@importantF:@children[ :
+@tabsi ;o:Sass::Script::List	;ir;{ :@separator:
+space;[o;		;ir;
+;;@;"space-betweeno;		;ir;
+;;@;"!important[o:Sass::Tree::PropNode;io:@prop_syntax:new;["justify-content;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:@importantF:@children[ :
+@tabsi ;o:Sass::Script::List	;io;{ :@separator:
+space;[o;		;io;
+;;@;"flex-endo;		;io;
+;;@;"!important[o:Sass::Tree::PropNode;il:@prop_syntax:new;["justify-content;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:@importantF:@children[ :
+@tabsi ;o:Sass::Script::List	;il;{ :@separator:
+space;[o;		;il;
+;;@;"flex-starto;		;il;
+;;@;"!important;[[o;;"	pack;{ ;"	packo;	;ig;;;@;"
+start[o;;"important;@;"importanto;	;ig;;;@;"noo;;i‡;"st-box-flex;@;T;[u;&i[o:Sass::Script::Operation
+:
+@lineiˆ:@options{ :@operand2o:Sass::Script::String	;iˆ:
+@type:identifier;@:@value"important:@operand1o:Sass::Script::Variable	;iˆ:
+@name"important;@:@underscored_name"important:@operator:equ:Sass::Tree::IfNode[00[o:Sass::Tree::PropNode:
+@linei:@prop_syntax:new:
+@name["-webkit-box-flex:@options{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:@importantF:@children[ :
+@tabsi :@valueo:Sass::Script::Variable	;i;	"	flex;
+{ :@underscored_name"	flexo; ;iŽ;;;	["-ms-flex;
+@
+;F;[ ;i ;o:Sass::Script::List	;iŽ;
+{ :@separator:
+space;[o;	;iŽ;	"	flex;
+@;"	flexo:Sass::Script::Number;iŽ;
+@:@original"0:@denominator_units[ :@numerator_units[ ;i o;	;iŽ;	"preferredSize;
+@;"preferredSizeo; ;i;;;	["	flex;
+@
+;F;[ ;i ;o;	;i;
+{ ;;;[o;	;i;	"	flex;
+@(;"	flexo;;i;
+@(;"0;@;[ ;i o;	;i;	"preferredSize;
+@(;"preferredSize[o:Sass::Tree::PropNode;i‰:@prop_syntax:new;["-webkit-box-flex;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:@importantF:@children[ :
+@tabsi ;o:Sass::Script::List	;i‰;{ :@separator:
+space;[o;	;i‰;"	flex;@;"	flexo;		;i‰;
+;;@;"!importanto;;iŠ;;;["-ms-flex;@;F;[ ;i ;o;	;iŠ;{ ;;;[	o;	;iŠ;"	flex;@#;"	flexo:Sass::Script::Number;iŠ;@#:@original"0:@denominator_units[ :@numerator_units[ ;i o;	;iŠ;"preferredSize;@#;"preferredSizeo;		;iŠ;
+;;@#;"!importanto;;i‹;;;["	flex;@;F;[ ;i ;o;	;i‹;{ ;;;[	o;	;i‹;"	flex;@6;"	flexo; ;i‹;@6;!"0;"@*;#[ ;i o;	;i‹;"preferredSize;@6;"preferredSizeo;		;i‹;
+;;@6;"!important;[[o;;"	flex;{ ;"	flexo; ;i‡;@*;!"1;"@\;#[ ;i[o;;"preferredSize;@*;"preferredSizeo;	;i‡;;;@*;"	auto[o;;"important;@*;"importanto;	;i‡;;;@*;"noo;;i“;"st-box-shadow;@;T;[o;;i”;;;["-webkit-box-shadow;@;F;[ ;i ;o;	;i”;"shadow;{ ;"shadowo;;i•;;;["box-shadow;@;F;[ ;i ;o;	;i•;"shadow;{ ;"shadow;[[o;;"shadow;{ ;"shadowo;	;i“;;;@R;"	noneo;;i˜;"st-box-direction;@;T;[o;;i™;;;["-webkit-box-direction;@;F;[ ;i ;o;	;i™;"direction;{ ;"directionu;&L	[o:Sass::Script::Operation
+:
+@lineiš:@options{ :@operand2o:Sass::Script::String	;iš:
+@type:identifier;@:@value"reverse:@operand1o:Sass::Script::Variable	;iš:
+@name"direction;@:@underscored_name"direction:@operator:equ:Sass::Tree::IfNode[00[u:Sass::Tree::IfNodeý[o:Sass::Script::Operation
+:
+@linei£:@options{ :@operand2o:Sass::Script::String	;i£:
+@type:identifier;@:@value"row:@operand1o:Sass::Script::Variable	;i£:
+@name"orientation;@:@underscored_name"orientation:@operator:equ:Sass::Tree::IfNode[00[o:Sass::Tree::PropNode:
+@linei§:@prop_syntax:new:
+@name["-ms-flex-direction:@options{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:@importantF:@children[ :
+@tabsi :@valueo:Sass::Script::String:
+@type:identifier;"columno; ;i¨;;;	["flex-direction;
+@
+;F;[ ;i ;o;;;;"column[o:Sass::Tree::PropNode;i¤:@prop_syntax:new;["-ms-flex-direction;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:@importantF:@children[ :
+@tabsi ;o;	;
+;;"rowo;;i¥;;;["flex-direction;@;F;[ ;i ;o;	;
+;;"row[u;[o:Sass::Script::Operation
+:
+@linei›:@options{ :@operand2o:Sass::Script::String	;i›:
+@type:identifier;@:@value"row:@operand1o:Sass::Script::Variable	;i›:
+@name"orientation;@:@underscored_name"orientation:@operator:equ:Sass::Tree::IfNode­[00[o:Sass::Tree::PropNode:
+@lineiŸ:@prop_syntax:new:
+@name["-ms-flex-direction:@options{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:@importantF:@children[ :
+@tabsi :@valueo:Sass::Script::String:
+@type:identifier;"column-reverseo; ;i ;;;	["flex-direction;
+@
+;F;[ ;i ;o;;;;"column-reverse[o:Sass::Tree::PropNode;iœ:@prop_syntax:new;["-ms-flex-direction;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:@importantF:@children[ :
+@tabsi ;o;	;
+;;"row-reverseo;;i;;;["flex-direction;@;F;[ ;i ;o;	;
+;;"row-reverse;[[o;;"direction;{ ;"directiono;	;i˜;;;@f;"normal[o;;"orientation;@f;"orientationo;	;i˜;;;@f;"rowo;;i­;"st-loading-spinner;@;T;[o:Sass::Tree::RuleNode;i®;@:
+@rule[".x-loading-spinner:@parsed_ruleso:"Sass::Selector::CommaSequence;i®:@members[o:Sass::Selector::Sequence;+[o:#Sass::Selector::SimpleSequence;i®;+[o:Sass::Selector::Class;i®;["x-loading-spinner:@filename" ;/@;/@;T;[o;;i¯;;;["font-size;@;F;[ ;i ;o;;;;"	250%o;;i°;;;["height;@;F;[ ;i ;o;	;i°;"spinner-size;{ ;"spinner_sizeo;;i±;;;["
+width;@;F;[ ;i ;o;	;i±;"spinner-size;{ ;"spinner_sizeo;;i²;;;["position;@;F;[ ;i ;o;;;;"relativeo;;i´;;;["-webkit-transform-origin;@;F;[ ;i ;o:Sass::Script::List	;i´;{ :@separator:
+space;[o:Sass::Script::Operation
+;i´;@¢:@operand2o; ;i´;@¢;!"2;"@\;#[ ;i:@operand1o;	;i´;"spinner-size;@¢;"spinner_size:@operator:divo;3
+;i´;@¢;4o; ;i´;@¢;!"2;"@\;#[ ;i;5o;	;i´;"spinner-size;@¢;"spinner_size;6;7o;;iµ;;;["transform-origin;@;F;[ ;i ;o;0	;iµ;{ ;1;2;[o;3
+;iµ;@·;4o; ;iµ;@·;!"2;"@\;#[ ;i;5o;	;iµ;"spinner-size;@·;"spinner_size;6;7o;3
+;iµ;@·;4o; ;iµ;@·;!"2;"@\;#[ ;i;5o;	;iµ;"spinner-size;@·;"spinner_size;6;7o;;i·;@;0;[ ;0;[ ;"-/* Shared Properties for all the bars */o;';iº;@;([">& > span,
+        & > span:before,
+        & > span:after;)o;*;iº;+[o;,;+[o;-;iº;+[o:Sass::Selector::Parent;iº;/" ;/@Õ">o;-;iº;+[o:Sass::Selector::Element	;iº;["	span;/@Õ:@namespace0;/@Õo;,;+[	"
+o;-;iº;+[o;8;iº;/@Õ;/@Õ">o;-;iº;+[o;9	;iº;["	span;/@Õ;:0o:Sass::Selector::Pseudo
+;iº;["before;:
+class:	@arg0;/@Õ;/@Õo;,;+[	"
+o;-;iº;+[o;8;iº;/@Õ;/@Õ">o;-;iº;+[o;9	;iº;["	span;/@Õ;:0o;;
+;iº;["
+after;;<;=0;/@Õ;/@Õ;/@Õ;T;[o;;i»;;;["display;@;F;[ ;i ;o;;;;"
+blocko;;i¼;;;["position;@;F;[ ;i ;o;;;;"absoluteo;;i½;;;["
+width;@;F;[ ;i ;o;	;i½;"bar-width;{ ;"bar_widtho;;i¾;;;["height;@;F;[ ;i ;o;	;i¾;"bar-height;{ ;"bar_heighto;;i¿;;;["top;@;F;[ ;i ;o;;;;"0o;;iÀ;;;["-webkit-transform-origin;@;F;[ ;i ;o;0	;iÀ;{ ;1;2;[o;3
+;iÀ;@";4o; ;iÀ;@";!"2;"@\;#[ ;i;5o;	;iÀ;"bar-width;@";"bar_width;6;7o;3
+;iÀ;@";4o; ;iÀ;@";!"2;"@\;#[ ;i;5o;	;iÀ;"spinner-size;@";"spinner_size;6;7o;;iÁ;;;["transform-origin;@;F;[ ;i ;o;0	;iÁ;{ ;1;2;[o;3
+;iÁ;@7;4o; ;iÁ;@7;!"2;"@\;#[ ;i;5o;	;iÁ;"bar-width;@7;"bar_width;6;7o;3
+;iÁ;@7;4o; ;iÁ;@7;!"2;"@\;#[ ;i;5o;	;iÁ;"spinner-size;@7;"spinner_size;6;7o;;iÂ;;;["content;@;F;[ ;i ;o;;;;"" ";i o;';iÅ;@;(["& > span;)o;*;iÅ;+[o;,;+[o;-;iÅ;+[o;8;iÅ;/" ;/@W">o;-;iÅ;+[o;9	;iÅ;["	span;/@W;:0;/@W;/@W;T;[o;;iÆ;;;["	left;@;F;[ ;i ;o;;;;"50%o;;iÇ;;;["margin-left;@;F;[ ;i ;o; ;iÇ;{ ;!"-0.05em;"[ ;#["em;f-0.050000000000000003 ™šo;';iÉ;@;(["&.x-loading-top;)o;*;iÉ;+[o;,;+[o;-;iÉ;+[o;8;iÉ;/" o;.;iÉ;["x-loading-top;/@z;/@z;/@z;T;[o;;iÉ;;;["background-color;@;F;[ ;i ;o:Sass::Script::Funcall
+;iÉ;"	rgba;{ ;%{ ;[o;	;iÉ;"
+color;@…;"
+coloro; ;iÉ;@…;!"	0.99;"@\;#[ ;f0.98999999999999999 G®;i o;';iÊ;@;(["&.x-loading-top::after;)o;*;iÊ;+[o;,;+[o;-;iÊ;+[o;8;iÊ;/" o;.;iÊ;["x-loading-top;/@™o;;
+;iÊ;["
+after;:element;=0;/@™;/@™;/@™;T;[o;;iÊ;;;["background-color;@;F;[ ;i ;o;>
+;iÊ;"	rgba;{ ;%{ ;[o;	;iÊ;"
+color;@§;"
+coloro; ;iÊ;@§;!"0.9;"@\;#[ ;f0.90000000000000002 ÌÍ;i o;';iË;@;(["&.x-loading-left::before;)o;*;iË;+[o;,;+[o;-;iË;+[o;8;iË;/" o;.;iË;["x-loading-left;/@»o;;
+;iË;["before;;?;=0;/@»;/@»;/@»;T;[o;;iË;;;["background-color;@;F;[ ;i ;o;>
+;iË;"	rgba;{ ;%{ ;[o;	;iË;"
+color;@É;"
+coloro; ;iË;@É;!"0.8;"@\;#[ ;f0.80000000000000004 ™š;i o;';iÌ;@;(["&.x-loading-left;)o;*;iÌ;+[o;,;+[o;-;iÌ;+[o;8;iÌ;/" o;.;iÌ;["x-loading-left;/@Ý;/@Ý;/@Ý;T;[o;;iÌ;;;["background-color;@;F;[ ;i ;o;>
+;iÌ;"	rgba;{ ;%{ ;[o;	;iÌ;"
+color;@è;"
+coloro; ;iÌ;@è;!"0.7;"@\;#[ ;f0.69999999999999996 ff;i o;';iÍ;@;(["&.x-loading-left::after;)o;*;iÍ;+[o;,;+[o;-;iÍ;+[o;8;iÍ;/" o;.;iÍ;["x-loading-left;/@üo;;
+;iÍ;["
+after;;?;=0;/@ü;/@ü;/@ü;T;[o;;iÍ;;;["background-color;@;F;[ ;i ;o;>
+;iÍ;"	rgba;{ ;%{ ;[o;	;iÍ;"
+color;@
+;"
+coloro; ;iÍ;@
+;!"0.6;"@\;#[ ;f0.59999999999999998 33;i o;';iÎ;@;(["&.x-loading-bottom::before;)o;*;iÎ;+[o;,;+[o;-;iÎ;+[o;8;iÎ;/" o;.;iÎ;["x-loading-bottom;/@o;;
+;iÎ;["before;;?;=0;/@;/@;/@;T;[o;;iÎ;;;["background-color;@;F;[ ;i ;o;>
+;iÎ;"	rgba;{ ;%{ ;[o;	;iÎ;"
+color;@,;"
+coloro; ;iÎ;@,;!"0.5;"@\;#[ ;f0.5;i o;';iÏ;@;(["&.x-loading-bottom;)o;*;iÏ;+[o;,;+[o;-;iÏ;+[o;8;iÏ;/" o;.;iÏ;["x-loading-bottom;/@@;/@@;/@@;T;[o;;iÏ;;;["background-color;@;F;[ ;i ;o;>
+;iÏ;"	rgba;{ ;%{ ;[o;	;iÏ;"
+color;@K;"
+coloro; ;iÏ;@K;!"0.4;"@\;#[ ;f0.40000000000000002 ™š;i o;';iÐ;@;(["&.x-loading-bottom::after;)o;*;iÐ;+[o;,;+[o;-;iÐ;+[o;8;iÐ;/" o;.;iÐ;["x-loading-bottom;/@_o;;
+;iÐ;["
+after;;?;=0;/@_;/@_;/@_;T;[o;;iÐ;;;["background-color;@;F;[ ;i ;o;>
+;iÐ;"	rgba;{ ;%{ ;[o;	;iÐ;"
+color;@m;"
+coloro; ;iÐ;@m;!"	0.35;"@\;#[ ;f0.34999999999999998 ff;i o;';iÑ;@;(["&.x-loading-right::before;)o;*;iÑ;+[o;,;+[o;-;iÑ;+[o;8;iÑ;/" o;.;iÑ;["x-loading-right;/@o;;
+;iÑ;["before;;?;=0;/@;/@;/@;T;[o;;iÑ;;;["background-color;@;F;[ ;i ;o;>
+;iÑ;"	rgba;{ ;%{ ;[o;	;iÑ;"
+color;@;"
+coloro; ;iÑ;@;!"0.3;"@\;#[ ;f0.29999999999999999 33;i o;';iÒ;@;(["&.x-loading-right;)o;*;iÒ;+[o;,;+[o;-;iÒ;+[o;8;iÒ;/" o;.;iÒ;["x-loading-right;/@£;/@£;/@£;T;[o;;iÒ;;;["background-color;@;F;[ ;i ;o;>
+;iÒ;"	rgba;{ ;%{ ;[o;	;iÒ;"
+color;@®;"
+coloro; ;iÒ;@®;!"	0.25;"@\;#[ ;f	0.25;i o;';iÓ;@;(["&.x-loading-right::after;)o;*;iÓ;+[o;,;+[o;-;iÓ;+[o;8;iÓ;/" o;.;iÓ;["x-loading-right;/@Âo;;
+;iÓ;["
+after;;?;=0;/@Â;/@Â;/@Â;T;[o;;iÓ;;;["background-color;@;F;[ ;i ;o;>
+;iÓ;"	rgba;{ ;%{ ;[o;	;iÓ;"
+color;@Ð;"
+coloro; ;iÓ;@Ð;!"0.2;"@\;#[ ;f0.20000000000000001 ™š;i o;';iÔ;@;(["&.x-loading-top::before;)o;*;iÔ;+[o;,;+[o;-;iÔ;+[o;8;iÔ;/" o;.;iÔ;["x-loading-top;/@äo;;
+;iÔ;["before;;?;=0;/@ä;/@ä;/@ä;T;[o;;iÔ;;;["background-color;@;F;[ ;i ;o;>
+;iÔ;"	rgba;{ ;%{ ;[o;	;iÔ;"
+color;@ò;"
+coloro; ;iÔ;@ò;!"	0.15;"@\;#[ ;f0.14999999999999999 33;i ;i ;i o;;iØ;@;0;[ ;0;[ ;"%/* Rotate each of the 4 Spans */o;';iÙ;@;([",.x-loading-spinner > span.x-loading-top;)o;*;iÙ;+[o;,;+[o;-;iÙ;+[o;.;iÙ;["x-loading-spinner;/" ;/@">o;-;iÙ;+[o;9	;iÙ;["	span;/@;:0o;.;iÙ;["x-loading-top;/@;/@;/@;T;[o;;iÙ;;;["-webkit-transform;@;F;[ ;i ;o;>
+;iÙ;"rotate;{ ;%{ ;[o; ;iÙ;@;!"	0deg;"[ ;#["deg;i o;;iÙ;;;["-moz-transform;@;F;[ ;i ;o;>
+;iÙ;"rotate;{ ;%{ ;[o; ;iÙ;@+;!"	0deg;"[ ;#["deg;i o;;iÙ;;;["-ms-transform;@;F;[ ;i ;o;>
+;iÙ;"rotate;{ ;%{ ;[o; ;iÙ;@9;!"	0deg;"[ ;#["deg;i ;i o;';iÚ;@;(["..x-loading-spinner > span.x-loading-right;)o;*;iÚ;+[o;,;+[o;-;iÚ;+[o;.;iÚ;["x-loading-spinner;/" ;/@M">o;-;iÚ;+[o;9	;iÚ;["	span;/@M;:0o;.;iÚ;["x-loading-right;/@M;/@M;/@M;T;[o;;iÚ;;;["-webkit-transform;@;F;[ ;i ;o;>
+;iÚ;"rotate;{ ;%{ ;[o; ;iÚ;@^;!"
+90deg;"[ ;#["deg;i_o;;iÚ;;;["-moz-transform;@;F;[ ;i ;o;>
+;iÚ;"rotate;{ ;%{ ;[o; ;iÚ;@l;!"
+90deg;"[ ;#["deg;i_o;;iÚ;;;["-ms-transform;@;F;[ ;i ;o;>
+;iÚ;"rotate;{ ;%{ ;[o; ;iÚ;@z;!"
+90deg;"[ ;#["deg;i_;i o;';iÛ;@;(["/.x-loading-spinner > span.x-loading-bottom;)o;*;iÛ;+[o;,;+[o;-;iÛ;+[o;.;iÛ;["x-loading-spinner;/" ;/@Ž">o;-;iÛ;+[o;9	;iÛ;["	span;/@Ž;:0o;.;iÛ;["x-loading-bottom;/@Ž;/@Ž;/@Ž;T;[o;;iÛ;;;["-webkit-transform;@;F;[ ;i ;o;>
+;iÛ;"rotate;{ ;%{ ;[o; ;iÛ;@Ÿ;!"180deg;"[ ;#["deg;i´o;;iÛ;;;["-moz-transform;@;F;[ ;i ;o;>
+;iÛ;"rotate;{ ;%{ ;[o; ;iÛ;@­;!"180deg;"[ ;#["deg;i´o;;iÛ;;;["-ms-transform;@;F;[ ;i ;o;>
+;iÛ;"rotate;{ ;%{ ;[o; ;iÛ;@»;!"180deg;"[ ;#["deg;i´;i o;';iÜ;@;(["-.x-loading-spinner > span.x-loading-left;)o;*;iÜ;+[o;,;+[o;-;iÜ;+[o;.;iÜ;["x-loading-spinner;/" ;/@Ï">o;-;iÜ;+[o;9	;iÜ;["	span;/@Ï;:0o;.;iÜ;["x-loading-left;/@Ï;/@Ï;/@Ï;T;[o;;iÜ;;;["-webkit-transform;@;F;[ ;i ;o;>
+;iÜ;"rotate;{ ;%{ ;[o; ;iÜ;@à;!"270deg;"[ ;#["deg;io;;iÜ;;;["-moz-transform;@;F;[ ;i ;o;>
+;iÜ;"rotate;{ ;%{ ;[o; ;iÜ;@î;!"270deg;"[ ;#["deg;io;;iÜ;;;["-ms-transform;@;F;[ ;i ;o;>
+;iÜ;"rotate;{ ;%{ ;[o; ;iÜ;@ü;!"270deg;"[ ;#["deg;i;i o;;iÞ;@;0;[ ;0;[ ;"I/* These are the two lines that surround each of the 4 Span lines */o;';iß;@;(["&.x-loading-spinner > span::before;)o;*;iß;+[o;,;+[o;-;iß;+[o;.;iß;["x-loading-spinner;/" ;/@">o;-;iß;+[o;9	;iß;["	span;/@;:0o;;
+;iß;["before;;?;=0;/@;/@;/@;T;[o;;iß;;;["-webkit-transform;@;F;[ ;i ;o;>
+;iß;"rotate;{ ;%{ ;[o; ;iß;@%;!"
+30deg;"[ ;#["deg;i#o;;iß;;;["-moz-transform;@;F;[ ;i ;o;>
+;iß;"rotate;{ ;%{ ;[o; ;iß;@3;!"
+30deg;"[ ;#["deg;i#o;;iß;;;["-ms-transform;@;F;[ ;i ;o;>
+;iß;"rotate;{ ;%{ ;[o; ;iß;@A;!"
+30deg;"[ ;#["deg;i#;i o;';ià;@;(["%.x-loading-spinner > span::after;)o;*;ià;+[o;,;+[o;-;ià;+[o;.;ià;["x-loading-spinner;/" ;/@U">o;-;ià;+[o;9	;ià;["	span;/@U;:0o;;
+;ià;["
+after;;?;=0;/@U;/@U;/@U;T;[o;;ià;;;["-webkit-transform;@;F;[ ;i ;o;>
+;ià;"rotate;{ ;%{ ;[o; ;ià;@f;!"-30deg;"[ ;#["deg;iÝo;;ià;;;["-moz-transform;@;F;[ ;i ;o;>
+;ià;"rotate;{ ;%{ ;[o; ;ià;@t;!"-30deg;"[ ;#["deg;iÝo;;ià;;;["-ms-transform;@;F;[ ;i ;o;>
+;ià;"rotate;{ ;%{ ;[o; ;ià;@‚;!"-30deg;"[ ;#["deg;iÝ;i o;;iâ;@;0;[ ;0;[ ;"/* Set Animation */o;';iã;@;([".x-loading-spinner;)o;*;iã;+[o;,;+[o;-;iã;+[o;.;iã;["x-loading-spinner;/" ;/@š;/@š;T;[o;;iä;;;["-webkit-animation-name;@;F;[ ;i ;o;;;;"x-loading-spinner-rotateo;;iå;;;["-webkit-animation-duration;@;F;[ ;i ;o;;;;".5so;;iæ;;;["&-webkit-animation-iteration-count;@;F;[ ;i ;o;;;;"infiniteo;;iç;;;["&-webkit-animation-timing-function;@;F;[ ;i ;o;;;;"linearo;;ié;;;["animation-name;@;F;[ ;i ;o;;;;"x-loading-spinner-rotateo;;iê;;;["animation-duration;@;F;[ ;i ;o;;;;".5so;;ië;;;["animation-timing-function;@;F;[ ;i ;o;;;;"linearo;;iì;;;["animation-iteration-count;@;F;[ ;i ;o;;;;"infinite;i ;[	[o;;"spinner-size;{ ;"spinner_sizeo; ;i­;@Ð;!"	50px;"[ ;#["px;i7[o;;"
+color;@Ð;"
+coloro:Sass::Script::Color	;i­:@attrs{	:
+alphai:
+greeniÌ:	blueiÌ:rediÌ;@Ð;0[o;;"bar-width;@Ð;"bar_widtho; ;i­;@Ð;!"5px;"[ ;#["px;i
+[o;;"bar-height;@Ð;"bar_heighto; ;i­;@Ð;!"	15px;"[ ;#["px;io;;ið;@;0;[ ;0;[ ;"»/**
+ * Includes an icon to be used on Button or Tab components. The $name is the name of the icon, or the character
+ * of the font being used.
+ *
+ *     @include icon('attachment');
+ *
+ * @param {string} $name The name of the icon to be included. This is then usable as the iconCls in your app.
+ * @param {string} $character The character
+ * @param {string} $font-family The `font-family` used for this icon. Defaults to the `Pictos` font.
+ */o;;iú;"	icon;@;T;[o:Sass::Tree::VariableNode;iû;"raw_character;@:@guarded0:
+@expro;>
+;iû;"icon-character-for-name;{ ;%{ ;[o;	;iû;"	name;@ú;"	name;[ u;&å[o:Sass::Script::Operation
+:
+@lineiý:@options{ :@operand2o; 
+;iý;@;o:Sass::Script::String	;iý:
+@type:identifier;@:@value"	null:@operand1o:Sass::Script::Variable	;iý:
+@name"raw_character;@:@underscored_name"raw_character:@operator:eq;o; 
+;iý;@;o;		;iý;
+;;@;"	null;o;	;iý;"character;@;"character;;;:and0[o:Sass::Tree::DebugNode	;iþ;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro:&Sass::Script::StringInterpolation
+;iþ:@beforeo;		;iþ;
+:string;{ ;"#icon: icon with name ';@:@aftero;		;iþ;
+;;@;"' not found.:	@mido;	;iþ;"	name;@;"	name:@children[ u;&>[o:Sass::Script::Operation
+:
+@linei:@options{ :@operand2o; 
+;i;@;o:Sass::Script::String	;i:
+@type:identifier;@:@value"	null:@operand1o:Sass::Script::Variable	;i:
+@name"raw_character;@:@underscored_name"raw_character:@operator:neq;o; 
+;i;@;o;		;i;
+;;@;"	null;o;	;i;"character;@;"character;;;:or0[o:Sass::Tree::RuleNode;i;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@rule[	".x-tab .x-button-icon.o;	;i;"	name;{ ;"	name"(,
+        .x-button .x-button-icon.o;	;i;"	name;{ ;"	name:@has_childrenT:@children[o;;i;@;["&:before:@parsed_ruleso:"Sass::Selector::CommaSequence;i:@members[o:Sass::Selector::Sequence;[o:#Sass::Selector::SimpleSequence;i;[o:Sass::Selector::Parent;i:@filename" o:Sass::Selector::Pseudo
+;i;["before;
+:
+class:	@arg0;!@/;!@/;!@/;T;[	o:Sass::Tree::MixinNode;i;"absolute-position;@:@keywords{ ;[ :
+@args[ o:Sass::Tree::PropNode;i:@prop_syntax:new;["text-align;@:@importantF;[ :
+@tabsi ;o;	;
+;;"centeru:Sass::Tree::IfNode$[o:Sass::Script::Operation
+:
+@linei:@options{ :@operand2o:Sass::Script::String	;i:
+@type:identifier;@:@value"	null:@operand1o:Sass::Script::Variable	;i:
+@name"font-family;@:@underscored_name"font_family:@operator:neq0[o:Sass::Tree::PropNode;i	:@prop_syntax:new;["font-family;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:@importantF:@children[ :
+@tabsi ;o;	;i	;"font-family;{ ;"font_familyu;-G[o:Sass::Script::Operation
+:
+@linei:@options{ :@operand2o:Sass::Script::String	;i:
+@type:identifier;@:@value"	null:@operand1o:Sass::Script::Variable	;i:
+@name"character;@:@underscored_name"character:@operator:nequ:Sass::Tree::IfNode [o:Sass::Script::Operation
+:
+@linei:@options{ :@operand2o:Sass::Script::String	;i:
+@type:identifier;@:@value"	null:@operand1o:Sass::Script::Variable	;i:
+@name"raw_character;@:@underscored_name"raw_character:@operator:neq0[o:Sass::Tree::PropNode;i:@prop_syntax:new;["content;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:@importantF:@children[ :
+@tabsi ;o:&Sass::Script::StringInterpolation
+;i:@beforeo;		;i;
+:string;{ ;" ;@:@aftero;		;i;
+;;@;" :	@mido;	;i;"raw_character;@;"raw_character[o:Sass::Tree::PropNode;i:@prop_syntax:new;["content;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:@importantF:@children[ :
+@tabsi ;o:&Sass::Script::StringInterpolation
+;i:@beforeo;		;i;
+:string;{ ;" ;@:@aftero;		;i;
+;;@;" :	@mido;	;i;"character;@;"character;,i ;,i ;[[o;;"	name;{ ;"	name0[o;;"character;@;"charactero;	;iú;;;@;"	null[o;;"font-family;@;"font_familyo;	;iú;;;@;"	nullo;;i;"inline-icon;@;T;[o;F;i;"character;@;G0;Ho;>
+;i;"icon-character-for-name;{ ;%{ ;[o;	;i;"	name;@;"	name;[ o;';i;@;(["&:before;)o;*;i;+[o;,;+[o;-;i;+[o;8;i;/" o;;
+;i;["before;;<;=0;/@-;/@-;/@-;T;[	o;$;i;"absolute-position;@;%{ ;[ ;[ o;;i;;;["text-align;@;F;[ ;i ;o;;;;"centero;;i;;;["font-family;@;F;[ ;i ;o;	;i;"font-family;{ ;"font_familyu;&([o:Sass::Script::Variable	:
+@linei:
+@name"character:@options{ :@underscored_name"characteru:Sass::Tree::IfNodeð[00[o:Sass::Tree::PropNode:
+@linei!:@prop_syntax:new:
+@name["content:@options{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:@importantF:@children[ :
+@tabsi :@valueo:&Sass::Script::StringInterpolation
+;i!:@beforeo:Sass::Script::String	;i!:
+@type:string;
+{ ;" ;
+@:@aftero;	;i!;;;
+@;" :	@mido:Sass::Script::Variable	;i!;	"	name;
+@:@underscored_name"	name[o:Sass::Tree::PropNode;i:@prop_syntax:new;["content;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:@importantF:@children[ :
+@tabsi :@valueo:&Sass::Script::StringInterpolation
+;i:@beforeo:Sass::Script::String	;i:
+@type:string;{ ;" ;@:@aftero;	;i;;;@;" :	@mido; 	;i;"character;@;	"character;i ;[[o;;"	name;{ ;"	name0[o;;"font-family;@J;"font_familyo;	;i;:string;@J;"Pictoso;;i&;"pictos-iconmask;@;T;[o:Sass::Tree::WarnNode	;i';@;Ho;	;i';;I;{ ;"Vpictos-iconmask is deprecated in 2.2. Please use '@include icon($name);' instead.;[ o;$;i(;"	icon;@;%{ ;[ ;[o;	;i(;"	name;{ ;"	name;[[o;;"	name;{ ;"	name0o;;i+;"icon-font;@;T;[o;$;i,;"font-face;@;%{ ;[ ;[o;	;i,;"	name;{ ;"	nameo;	;i,;"font-files;@s;"font_fileso;	;i,;"eot;@s;"eoto;';i/;@;(["8.x-tab .x-button-icon,
+    .x-button .x-button-icon;)o;*;i/;+[o;,;+[o;-;i/;+[o;.;i/;["
+x-tab;/" ;/@‡o;-;i/;+[o;.;i/;["x-button-icon;/@‡;/@‡o;,;+["
+o;-;i/;+[o;.;i/;["x-button;/@‡;/@‡o;-;i/;+[o;.;i/;["x-button-icon;/@‡;/@‡;/@‡;T;[o;';i0;@;(["&:before;)o;*;i0;+[o;,;+[o;-;i0;+[o;8;i0;/" o;;
+;i0;["before;;<;=0;/@¥;/@¥;/@¥;T;[o;;i1;;;["font-family;@;F;[ ;i ;o;	;i1;"	name;{ ;"	name;i ;i ;[[o;;"	name;{ ;"	name0[o;;"font-files;@¶;"font_files0[o;;"eot;@¶;"eoto:Sass::Script::Bool;i+;@¶;Fo:Sass::Tree::FunctionNode;i6;"icon-character-for-name;@;T;[o;;i7;@;i ;[ ;0;[ ;"!/* http://pictos.cc/font/ */o;;i9;@;i ;[ ;0;[ ;"/* Row 1 */u;&êÄ[o:Sass::Script::Operation
+:
+@linei::@options{ :@operand2o:Sass::Script::String	;i::
+@type:string;@:@value"anchor:@operand1o:Sass::Script::Variable	;i::
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodeÃ[o:Sass::Script::Operation
+:
+@linei;:@options{ :@operand2o:Sass::Script::String	;i;:
+@type:string;@:@value"box:@operand1o:Sass::Script::Variable	;i;:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNode)Á[o:Sass::Script::Operation
+:
+@linei<:@options{ :@operand2o:Sass::Script::String	;i<:
+@type:string;@:@value"upload:@operand1o:Sass::Script::Variable	;i<:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodeG¿[o:Sass::Script::Operation
+:
+@linei=:@options{ :@operand2o:Sass::Script::String	;i=:
+@type:string;@:@value"forbidden:@operand1o:Sass::Script::Variable	;i=:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodeb½[o:Sass::Script::Operation
+:
+@linei>:@options{ :@operand2o:Sass::Script::String	;i>:
+@type:string;@:@value"lightning:@operand1o:Sass::Script::Variable	;i>:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNode}»[o:Sass::Script::Operation
+:
+@linei?:@options{ :@operand2o:Sass::Script::String	;i?:
+@type:string;@:@value"rss:@operand1o:Sass::Script::Variable	;i?:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodež¹[o:Sass::Script::Operation
+:
+@linei@:@options{ :@operand2o:Sass::Script::String	;i@:
+@type:string;@:@value"	team:@operand1o:Sass::Script::Variable	;i@:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNode¾·[o:Sass::Script::Operation
+:
+@lineiA:@options{ :@operand2o:Sass::Script::String	;iA:
+@type:string;@:@value"	help:@operand1o:Sass::Script::Variable	;iA:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodeÞµ[o:Sass::Script::Operation
+:
+@lineiB:@options{ :@operand2o:Sass::Script::String	;iB:
+@type:string;@:@value"	info:@operand1o:Sass::Script::Variable	;iB:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodeþ³[o:Sass::Script::Operation
+:
+@lineiC:@options{ :@operand2o:Sass::Script::String	;iC:
+@type:string;@:@value"attachment:@operand1o:Sass::Script::Variable	;iC:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNode²[o:Sass::Script::Operation
+:
+@lineiD:@options{ :@operand2o:Sass::Script::String	;iD:
+@type:string;@:@value"
+heart:@operand1o:Sass::Script::Variable	;iD:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNode7°[o:Sass::Script::Operation
+:
+@lineiE:@options{ :@operand2o:Sass::Script::String	;iE:
+@type:string;@:@value"	list:@operand1o:Sass::Script::Variable	;iE:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodeW®[o:Sass::Script::Operation
+:
+@lineiF:@options{ :@operand2o:Sass::Script::String	;iF:
+@type:string;@:@value"
+music:@operand1o:Sass::Script::Variable	;iF:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodev¬[o:Sass::Script::Operation
+:
+@lineiG:@options{ :@operand2o:Sass::Script::String	;iG:
+@type:string;@:@value"
+table:@operand1o:Sass::Script::Variable	;iG:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNode•ª[o:Sass::Script::Operation
+:
+@lineiH:@options{ :@operand2o:Sass::Script::String	;iH:
+@type:string;@:@value"folder:@operand1o:Sass::Script::Variable	;iH:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNode³¨[o:Sass::Script::Operation
+:
+@lineiI:@options{ :@operand2o:Sass::Script::String	;iI:
+@type:string;@:@value"pencil:@operand1o:Sass::Script::Variable	;iI:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodeÑ¦[o:Sass::Script::Operation
+:
+@lineiJ:@options{ :@operand2o:Sass::Script::String	;iJ:
+@type:string;@:@value"
+chat2:@operand1o:Sass::Script::Variable	;iJ:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodeð¤[o:Sass::Script::Operation
+:
+@lineiK:@options{ :@operand2o:Sass::Script::String	;iK:
+@type:string;@:@value"retweet:@operand1o:Sass::Script::Variable	;iK:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNode£[o:Sass::Script::Operation
+:
+@lineiL:@options{ :@operand2o:Sass::Script::String	;iL:
+@type:string;@:@value"search:@operand1o:Sass::Script::Variable	;iL:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNode+¡[o:Sass::Script::Operation
+:
+@lineiM:@options{ :@operand2o:Sass::Script::String	;iM:
+@type:string;@:@value"	time:@operand1o:Sass::Script::Variable	;iM:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodeKŸ[o:Sass::Script::Operation
+:
+@lineiN:@options{ :@operand2o:Sass::Script::String	;iN:
+@type:string;@:@value"switch:@operand1o:Sass::Script::Variable	;iN:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodei[o:Sass::Script::Operation
+:
+@lineiO:@options{ :@operand2o:Sass::Script::String	;iO:
+@type:string;@:@value"camera:@operand1o:Sass::Script::Variable	;iO:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNode‡›[o:Sass::Script::Operation
+:
+@lineiP:@options{ :@operand2o:Sass::Script::String	;iP:
+@type:string;@:@value"	chat:@operand1o:Sass::Script::Variable	;iP:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNode§™[o:Sass::Script::Operation
+:
+@lineiQ:@options{ :@operand2o:Sass::Script::String	;iQ:
+@type:string;@:@value"settings2:@operand1o:Sass::Script::Variable	;iQ:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodeÂ—[o:Sass::Script::Operation
+:
+@lineiR:@options{ :@operand2o:Sass::Script::String	;iR:
+@type:string;@:@value"settings:@operand1o:Sass::Script::Variable	;iR:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodeÞ•[o:Sass::Script::Operation
+:
+@lineiS:@options{ :@operand2o:Sass::Script::String	;iS:
+@type:string;@:@value"	tags:@operand1o:Sass::Script::Variable	;iS:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodeþ“[o:Sass::Script::Operation
+:
+@lineiV:@options{ :@operand2o:Sass::Script::String	;iV:
+@type:string;@:@value"attachment2:@operand1o:Sass::Script::Variable	;iV:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNode’[o:Sass::Script::Operation
+:
+@lineiW:@options{ :@operand2o:Sass::Script::String	;iW:
+@type:string;@:@value"	bird:@operand1o:Sass::Script::Variable	;iW:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNode7[o:Sass::Script::Operation
+:
+@lineiX:@options{ :@operand2o:Sass::Script::String	;iX:
+@type:string;@:@value"
+cloud:@operand1o:Sass::Script::Variable	;iX:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodeVŽ[o:Sass::Script::Operation
+:
+@lineiY:@options{ :@operand2o:Sass::Script::String	;iY:
+@type:string;@:@value"delete_black1:@operand1o:Sass::Script::Variable	;iY:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodemŒ[o:Sass::Script::Operation
+:
+@lineiZ:@options{ :@operand2o:Sass::Script::String	;iZ:
+@type:string;@:@value"eye:@operand1o:Sass::Script::Variable	;iZ:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodeŽŠ[o:Sass::Script::Operation
+:
+@linei[:@options{ :@operand2o:Sass::Script::String	;i[:
+@type:string;@:@value"	file:@operand1o:Sass::Script::Variable	;i[:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNode®ˆ[o:Sass::Script::Operation
+:
+@linei\:@options{ :@operand2o:Sass::Script::String	;i\:
+@type:string;@:@value"browser:@operand1o:Sass::Script::Variable	;i\:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodeË†[o:Sass::Script::Operation
+:
+@linei]:@options{ :@operand2o:Sass::Script::String	;i]:
+@type:string;@:@value"	home:@operand1o:Sass::Script::Variable	;i]:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodeë„[o:Sass::Script::Operation
+:
+@linei^:@options{ :@operand2o:Sass::Script::String	;i^:
+@type:string;@:@value"
+inbox:@operand1o:Sass::Script::Variable	;i^:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNode
+ƒ[o:Sass::Script::Operation
+:
+@linei_:@options{ :@operand2o:Sass::Script::String	;i_:
+@type:string;@:@value"network:@operand1o:Sass::Script::Variable	;i_:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNode'[o:Sass::Script::Operation
+:
+@linei`:@options{ :@operand2o:Sass::Script::String	;i`:
+@type:string;@:@value"key:@operand1o:Sass::Script::Variable	;i`:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodeH[o:Sass::Script::Operation
+:
+@lineia:@options{ :@operand2o:Sass::Script::String	;ia:
+@type:string;@:@value"
+radio:@operand1o:Sass::Script::Variable	;ia:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodeg}[o:Sass::Script::Operation
+:
+@lineib:@options{ :@operand2o:Sass::Script::String	;ib:
+@type:string;@:@value"	mail:@operand1o:Sass::Script::Variable	;ib:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNode‡{[o:Sass::Script::Operation
+:
+@lineic:@options{ :@operand2o:Sass::Script::String	;ic:
+@type:string;@:@value"	news:@operand1o:Sass::Script::Variable	;ic:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNode§y[o:Sass::Script::Operation
+:
+@lineid:@options{ :@operand2o:Sass::Script::String	;id:
+@type:string;@:@value"	case:@operand1o:Sass::Script::Variable	;id:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodeÇw[o:Sass::Script::Operation
+:
+@lineie:@options{ :@operand2o:Sass::Script::String	;ie:
+@type:string;@:@value"photos:@operand1o:Sass::Script::Variable	;ie:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodeåu[o:Sass::Script::Operation
+:
+@lineif:@options{ :@operand2o:Sass::Script::String	;if:
+@type:string;@:@value"
+power:@operand1o:Sass::Script::Variable	;if:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodet[o:Sass::Script::Operation
+:
+@lineig:@options{ :@operand2o:Sass::Script::String	;ig:
+@type:string;@:@value"action:@operand1o:Sass::Script::Variable	;ig:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNode"r[o:Sass::Script::Operation
+:
+@lineih:@options{ :@operand2o:Sass::Script::String	;ih:
+@type:string;@:@value"favorites:@operand1o:Sass::Script::Variable	;ih:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNode=p[o:Sass::Script::Operation
+:
+@lineii:@options{ :@operand2o:Sass::Script::String	;ii:
+@type:string;@:@value"
+plane:@operand1o:Sass::Script::Variable	;ii:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNode\n[o:Sass::Script::Operation
+:
+@lineij:@options{ :@operand2o:Sass::Script::String	;ij:
+@type:string;@:@value"	user:@operand1o:Sass::Script::Variable	;ij:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNode|l[o:Sass::Script::Operation
+:
+@lineik:@options{ :@operand2o:Sass::Script::String	;ik:
+@type:string;@:@value"
+video:@operand1o:Sass::Script::Variable	;ik:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNode›j[o:Sass::Script::Operation
+:
+@lineil:@options{ :@operand2o:Sass::Script::String	;il:
+@type:string;@:@value"compose:@operand1o:Sass::Script::Variable	;il:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNode¸h[o:Sass::Script::Operation
+:
+@lineim:@options{ :@operand2o:Sass::Script::String	;im:
+@type:string;@:@value"
+truck:@operand1o:Sass::Script::Variable	;im:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNode×f[o:Sass::Script::Operation
+:
+@linein:@options{ :@operand2o:Sass::Script::String	;in:
+@type:string;@:@value"chart2:@operand1o:Sass::Script::Variable	;in:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodeõd[o:Sass::Script::Operation
+:
+@lineio:@options{ :@operand2o:Sass::Script::String	;io:
+@type:string;@:@value"
+chart:@operand1o:Sass::Script::Variable	;io:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodec[o:Sass::Script::Operation
+:
+@lineir:@options{ :@operand2o:Sass::Script::String	;ir:
+@type:string;@:@value"expand:@operand1o:Sass::Script::Variable	;ir:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNode2a[o:Sass::Script::Operation
+:
+@lineis:@options{ :@operand2o:Sass::Script::String	;is:
+@type:string;@:@value"refresh:@operand1o:Sass::Script::Variable	;is:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodeO_[o:Sass::Script::Operation
+:
+@lineit:@options{ :@operand2o:Sass::Script::String	;it:
+@type:string;@:@value"
+check:@operand1o:Sass::Script::Variable	;it:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNoden][o:Sass::Script::Operation
+:
+@lineiu:@options{ :@operand2o:Sass::Script::String	;iu:
+@type:string;@:@value"check2:@operand1o:Sass::Script::Variable	;iu:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodeŒ[[o:Sass::Script::Operation
+:
+@lineiv:@options{ :@operand2o:Sass::Script::String	;iv:
+@type:string;@:@value"	play:@operand1o:Sass::Script::Variable	;iv:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNode¬Y[o:Sass::Script::Operation
+:
+@lineiw:@options{ :@operand2o:Sass::Script::String	;iw:
+@type:string;@:@value"
+pause:@operand1o:Sass::Script::Variable	;iw:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodeËW[o:Sass::Script::Operation
+:
+@lineix:@options{ :@operand2o:Sass::Script::String	;ix:
+@type:string;@:@value"	stop:@operand1o:Sass::Script::Variable	;ix:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodeëU[o:Sass::Script::Operation
+:
+@lineiy:@options{ :@operand2o:Sass::Script::String	;iy:
+@type:string;@:@value"forward:@operand1o:Sass::Script::Variable	;iy:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodeT[o:Sass::Script::Operation
+:
+@lineiz:@options{ :@operand2o:Sass::Script::String	;iz:
+@type:string;@:@value"rewind:@operand1o:Sass::Script::Variable	;iz:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNode&R[o:Sass::Script::Operation
+:
+@linei{:@options{ :@operand2o:Sass::Script::String	;i{:
+@type:string;@:@value"
+play2:@operand1o:Sass::Script::Variable	;i{:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodeEP[o:Sass::Script::Operation
+:
+@linei|:@options{ :@operand2o:Sass::Script::String	;i|:
+@type:string;@:@value"refresh2:@operand1o:Sass::Script::Variable	;i|:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodeaN[o:Sass::Script::Operation
+:
+@linei}:@options{ :@operand2o:Sass::Script::String	;i}:
+@type:string;@:@value"
+minus:@operand1o:Sass::Script::Variable	;i}:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNode€L[o:Sass::Script::Operation
+:
+@linei~:@options{ :@operand2o:Sass::Script::String	;i~:
+@type:string;@:@value"battery:@operand1o:Sass::Script::Variable	;i~:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodeJ[o:Sass::Script::Operation
+:
+@linei:@options{ :@operand2o:Sass::Script::String	;i:
+@type:string;@:@value"	left:@operand1o:Sass::Script::Variable	;i:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNode½H[o:Sass::Script::Operation
+:
+@linei€:@options{ :@operand2o:Sass::Script::String	;i€:
+@type:string;@:@value"
+right:@operand1o:Sass::Script::Variable	;i€:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodeÜF[o:Sass::Script::Operation
+:
+@linei:@options{ :@operand2o:Sass::Script::String	;i:
+@type:string;@:@value"calendar:@operand1o:Sass::Script::Variable	;i:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodeôD[o:Sass::Script::Operation
+:
+@linei‚:@options{ :@operand2o:Sass::Script::String	;i‚:
+@type:string;@:@value"shuffle:@operand1o:Sass::Script::Variable	;i‚:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodeC[o:Sass::Script::Operation
+:
+@lineiƒ:@options{ :@operand2o:Sass::Script::String	;iƒ:
+@type:string;@:@value"wireless:@operand1o:Sass::Script::Variable	;iƒ:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNode-A[o:Sass::Script::Operation
+:
+@linei„:@options{ :@operand2o:Sass::Script::String	;i„:
+@type:string;@:@value"speedometer:@operand1o:Sass::Script::Variable	;i„:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodeF?[o:Sass::Script::Operation
+:
+@linei…:@options{ :@operand2o:Sass::Script::String	;i…:
+@type:string;@:@value"	more:@operand1o:Sass::Script::Variable	;i…:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodef=[o:Sass::Script::Operation
+:
+@linei†:@options{ :@operand2o:Sass::Script::String	;i†:
+@type:string;@:@value"
+print:@operand1o:Sass::Script::Variable	;i†:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNode…;[o:Sass::Script::Operation
+:
+@lineiŠ:@options{ :@operand2o:Sass::Script::String	;iŠ:
+@type:string;@:@value"download:@operand1o:Sass::Script::Variable	;iŠ:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNode¡9[o:Sass::Script::Operation
+:
+@linei‹:@options{ :@operand2o:Sass::Script::String	;i‹:
+@type:string;@:@value"warning_black:@operand1o:Sass::Script::Variable	;i‹:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNode¸7[o:Sass::Script::Operation
+:
+@lineiŒ:@options{ :@operand2o:Sass::Script::String	;iŒ:
+@type:string;@:@value"locate:@operand1o:Sass::Script::Variable	;iŒ:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodeÖ5[o:Sass::Script::Operation
+:
+@linei:@options{ :@operand2o:Sass::Script::String	;i:
+@type:string;@:@value"
+trash:@operand1o:Sass::Script::Variable	;i:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodeõ3[o:Sass::Script::Operation
+:
+@lineiŽ:@options{ :@operand2o:Sass::Script::String	;iŽ:
+@type:string;@:@value"	cart:@operand1o:Sass::Script::Variable	;iŽ:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNode2[o:Sass::Script::Operation
+:
+@linei:@options{ :@operand2o:Sass::Script::String	;i:
+@type:string;@:@value"	bank:@operand1o:Sass::Script::Variable	;i:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNode50[o:Sass::Script::Operation
+:
+@linei:@options{ :@operand2o:Sass::Script::String	;i:
+@type:string;@:@value"	flag:@operand1o:Sass::Script::Variable	;i:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodeU.[o:Sass::Script::Operation
+:
+@linei‘:@options{ :@operand2o:Sass::Script::String	;i‘:
+@type:string;@:@value"add:@operand1o:Sass::Script::Variable	;i‘:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodev,[o:Sass::Script::Operation
+:
+@linei’:@options{ :@operand2o:Sass::Script::String	;i’:
+@type:string;@:@value"delete:@operand1o:Sass::Script::Variable	;i’:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNode”*[o:Sass::Script::Operation
+:
+@linei“:@options{ :@operand2o:Sass::Script::String	;i“:
+@type:string;@:@value"	lock:@operand1o:Sass::Script::Variable	;i“:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNode´([o:Sass::Script::Operation
+:
+@linei”:@options{ :@operand2o:Sass::Script::String	;i”:
+@type:string;@:@value"unlock:@operand1o:Sass::Script::Variable	;i”:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodeÒ&[o:Sass::Script::Operation
+:
+@linei•:@options{ :@operand2o:Sass::Script::String	;i•:
+@type:string;@:@value"minus2:@operand1o:Sass::Script::Variable	;i•:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodeð$[o:Sass::Script::Operation
+:
+@linei–:@options{ :@operand2o:Sass::Script::String	;i–:
+@type:string;@:@value"	add2:@operand1o:Sass::Script::Variable	;i–:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNode#[o:Sass::Script::Operation
+:
+@linei—:@options{ :@operand2o:Sass::Script::String	;i—:
+@type:string;@:@value"up:@operand1o:Sass::Script::Variable	;i—:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNode2![o:Sass::Script::Operation
+:
+@linei˜:@options{ :@operand2o:Sass::Script::String	;i˜:
+@type:string;@:@value"	down:@operand1o:Sass::Script::Variable	;i˜:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodeR[o:Sass::Script::Operation
+:
+@linei™:@options{ :@operand2o:Sass::Script::String	;i™:
+@type:string;@:@value"screens:@operand1o:Sass::Script::Variable	;i™:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodeo[o:Sass::Script::Operation
+:
+@lineiš:@options{ :@operand2o:Sass::Script::String	;iš:
+@type:string;@:@value"	bell:@operand1o:Sass::Script::Variable	;iš:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNode[o:Sass::Script::Operation
+:
+@linei›:@options{ :@operand2o:Sass::Script::String	;i›:
+@type:string;@:@value"
+quote:@operand1o:Sass::Script::Variable	;i›:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNode®[o:Sass::Script::Operation
+:
+@lineiœ:@options{ :@operand2o:Sass::Script::String	;iœ:
+@type:string;@:@value"volume_mute:@operand1o:Sass::Script::Variable	;iœ:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodeÇ[o:Sass::Script::Operation
+:
+@linei:@options{ :@operand2o:Sass::Script::String	;i:
+@type:string;@:@value"volume:@operand1o:Sass::Script::Variable	;i:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodeå[o:Sass::Script::Operation
+:
+@lineiž:@options{ :@operand2o:Sass::Script::String	;iž:
+@type:string;@:@value"	help:@operand1o:Sass::Script::Variable	;iž:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNode[o:Sass::Script::Operation
+:
+@linei¡:@options{ :@operand2o:Sass::Script::String	;i¡:
+@type:string;@:@value"arrow_left:@operand1o:Sass::Script::Variable	;i¡:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNode[o:Sass::Script::Operation
+:
+@linei¢:@options{ :@operand2o:Sass::Script::String	;i¢:
+@type:string;@:@value"arrow_right:@operand1o:Sass::Script::Variable	;i¢:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNode8[o:Sass::Script::Operation
+:
+@linei£:@options{ :@operand2o:Sass::Script::String	;i£:
+@type:string;@:@value"arrow_up:@operand1o:Sass::Script::Variable	;i£:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodeT[o:Sass::Script::Operation
+:
+@linei¤:@options{ :@operand2o:Sass::Script::String	;i¤:
+@type:string;@:@value"arrow_down:@operand1o:Sass::Script::Variable	;i¤:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNoden[o:Sass::Script::Operation
+:
+@linei¥:@options{ :@operand2o:Sass::Script::String	;i¥:
+@type:string;@:@value"organize:@operand1o:Sass::Script::Variable	;i¥:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodeŠ
+[o:Sass::Script::Operation
+:
+@linei¦:@options{ :@operand2o:Sass::Script::String	;i¦:
+@type:string;@:@value"bookmarks:@operand1o:Sass::Script::Variable	;i¦:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNode¥[o:Sass::Script::Operation
+:
+@linei§:@options{ :@operand2o:Sass::Script::String	;i§:
+@type:string;@:@value"
+loop2:@operand1o:Sass::Script::Variable	;i§:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodeÄ[o:Sass::Script::Operation
+:
+@linei¨:@options{ :@operand2o:Sass::Script::String	;i¨:
+@type:string;@:@value"	star:@operand1o:Sass::Script::Variable	;i¨:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNodeä[o:Sass::Script::Operation
+:
+@linei©:@options{ :@operand2o:Sass::Script::String	;i©:
+@type:string;@:@value"	maps:@operand1o:Sass::Script::Variable	;i©:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNode[o:Sass::Script::Operation
+:
+@lineiª:@options{ :@operand2o:Sass::Script::String	;iª:
+@type:string;@:@value"
+reply:@operand1o:Sass::Script::Variable	;iª:
+@name"	name;@:@underscored_name"	name:@operator:equ:Sass::Tree::IfNode#[00[o:Sass::Tree::ReturnNode	:
+@linei­:@options{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro:Sass::Script::String	;i­:
+@type:identifier;{ :@value"	null:@children[ [o:Sass::Tree::ReturnNode	;iª;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;iª;
+;;{ ;"R:@children[ [o:Sass::Tree::ReturnNode	;i©;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;i©;
+;;{ ;"@:@children[ [o:Sass::Tree::ReturnNode	;i¨;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;i¨;
+;;{ ;"S:@children[ [o:Sass::Tree::ReturnNode	;i§;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;i§;
+;;{ ;"r:@children[ [o:Sass::Tree::ReturnNode	;i¦;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;i¦;
+;;{ ;"I:@children[ [o:Sass::Tree::ReturnNode	;i¥;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;i¥;
+;;{ ;"I:@children[ [o:Sass::Tree::ReturnNode	;i¤;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;i¤;
+;;{ ;"}:@children[ [o:Sass::Tree::ReturnNode	;i£;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;i£;
+;;{ ;"{:@children[ [o:Sass::Tree::ReturnNode	;i¢;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;i¢;
+;;{ ;"]:@children[ [o:Sass::Tree::ReturnNode	;i¡;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;i¡;
+;;{ ;"[:@children[ [o:Sass::Tree::ReturnNode	;iž;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;iž;
+;;{ ;"?:@children[ [o:Sass::Tree::ReturnNode	;i;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;i;
+;;{ ;">:@children[ [o:Sass::Tree::ReturnNode	;iœ;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;iœ;
+;;{ ;"<:@children[ [o:Sass::Tree::ReturnNode	;i›;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;i›;
+;;{ ;"":@children[ [o:Sass::Tree::ReturnNode	;iš;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;iš;
+;;{ ;"::@children[ [o:Sass::Tree::ReturnNode	;i™;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;i™;
+;;{ ;"|:@children[ [o:Sass::Tree::ReturnNode	;i˜;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;i˜;
+;;{ ;"}:@children[ [o:Sass::Tree::ReturnNode	;i—;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;i—;
+;;{ ;"{:@children[ [o:Sass::Tree::ReturnNode	;i–;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;i–;
+;;{ ;"+:@children[ [o:Sass::Tree::ReturnNode	;i•;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;i•;
+;;{ ;"_:@children[ [o:Sass::Tree::ReturnNode	;i”;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;i”;
+;;{ ;"):@children[ [o:Sass::Tree::ReturnNode	;i“;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;i“;
+;;{ ;"(:@children[ [o:Sass::Tree::ReturnNode	;i’;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;i’;
+;;{ ;"*:@children[ [o:Sass::Tree::ReturnNode	;i‘;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;i‘;
+;;{ ;"&:@children[ [o:Sass::Tree::ReturnNode	;i;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;i;
+;;{ ;"^:@children[ [o:Sass::Tree::ReturnNode	;i;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;i;
+;;{ ;"%:@children[ [o:Sass::Tree::ReturnNode	;iŽ;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;iŽ;
+;;{ ;"$:@children[ [o:Sass::Tree::ReturnNode	;i;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;i;
+;;{ ;"#:@children[ [o:Sass::Tree::ReturnNode	;iŒ;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;iŒ;
+;;{ ;"@:@children[ [o:Sass::Tree::ReturnNode	;i‹;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;i‹;
+;;{ ;"!:@children[ [o:Sass::Tree::ReturnNode	;iŠ;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;iŠ;
+;;{ ;"~:@children[ [o:Sass::Tree::ReturnNode	;i†;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;i†;
+;;{ ;"/:@children[ [o:Sass::Tree::ReturnNode	;i…;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;i…;
+;;{ ;".:@children[ [o:Sass::Tree::ReturnNode	;i„;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;i„;
+;;{ ;",:@children[ [o:Sass::Tree::ReturnNode	;iƒ;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;iƒ;
+;;{ ;"':@children[ [o:Sass::Tree::ReturnNode	;i‚;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;i‚;
+;;{ ;";:@children[ [o:Sass::Tree::ReturnNode	;i;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;i;
+;;{ ;"
+\005C:@children[ [o:Sass::Tree::ReturnNode	;i€;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;i€;
+;;{ ;"]:@children[ [o:Sass::Tree::ReturnNode	;i;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;i;
+;;{ ;"[:@children[ [o:Sass::Tree::ReturnNode	;i~;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;i~;
+;;{ ;"=:@children[ [o:Sass::Tree::ReturnNode	;i};{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;i};
+;;{ ;"-:@children[ [o:Sass::Tree::ReturnNode	;i|;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;i|;
+;;{ ;"0:@children[ [o:Sass::Tree::ReturnNode	;i{;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;i{;
+;;{ ;"9:@children[ [o:Sass::Tree::ReturnNode	;iz;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;iz;
+;;{ ;"8:@children[ [o:Sass::Tree::ReturnNode	;iy;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;iy;
+;;{ ;"7:@children[ [o:Sass::Tree::ReturnNode	;ix;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;ix;
+;;{ ;"6:@children[ [o:Sass::Tree::ReturnNode	;iw;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;iw;
+;;{ ;"5:@children[ [o:Sass::Tree::ReturnNode	;iv;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;iv;
+;;{ ;"4:@children[ [o:Sass::Tree::ReturnNode	;iu;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;iu;
+;;{ ;"3:@children[ [o:Sass::Tree::ReturnNode	;it;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;it;
+;;{ ;"2:@children[ [o:Sass::Tree::ReturnNode	;is;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;is;
+;;{ ;"1:@children[ [o:Sass::Tree::ReturnNode	;ir;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;ir;
+;;{ ;"`:@children[ [o:Sass::Tree::ReturnNode	;io;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;io;
+;;{ ;"Z:@children[ [o:Sass::Tree::ReturnNode	;in;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;in;
+;;{ ;"Y:@children[ [o:Sass::Tree::ReturnNode	;im;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;im;
+;;{ ;"X:@children[ [o:Sass::Tree::ReturnNode	;il;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;il;
+;;{ ;"W:@children[ [o:Sass::Tree::ReturnNode	;ik;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;ik;
+;;{ ;"V:@children[ [o:Sass::Tree::ReturnNode	;ij;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;ij;
+;;{ ;"U:@children[ [o:Sass::Tree::ReturnNode	;ii;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;ii;
+;;{ ;"T:@children[ [o:Sass::Tree::ReturnNode	;ih;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;ih;
+;;{ ;"S:@children[ [o:Sass::Tree::ReturnNode	;ig;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;ig;
+;;{ ;"R:@children[ [o:Sass::Tree::ReturnNode	;if;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;if;
+;;{ ;"Q:@children[ [o:Sass::Tree::ReturnNode	;ie;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;ie;
+;;{ ;"P:@children[ [o:Sass::Tree::ReturnNode	;id;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;id;
+;;{ ;"O:@children[ [o:Sass::Tree::ReturnNode	;ic;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;ic;
+;;{ ;"N:@children[ [o:Sass::Tree::ReturnNode	;ib;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;ib;
+;;{ ;"M:@children[ [o:Sass::Tree::ReturnNode	;ia;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;ia;
+;;{ ;"L:@children[ [o:Sass::Tree::ReturnNode	;i`;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;i`;
+;;{ ;"K:@children[ [o:Sass::Tree::ReturnNode	;i_;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;i_;
+;;{ ;"J:@children[ [o:Sass::Tree::ReturnNode	;i^;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;i^;
+;;{ ;"I:@children[ [o:Sass::Tree::ReturnNode	;i];{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;i];
+;;{ ;"H:@children[ [o:Sass::Tree::ReturnNode	;i\;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;i\;
+;;{ ;"G:@children[ [o:Sass::Tree::ReturnNode	;i[;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;i[;
+;;{ ;"F:@children[ [o:Sass::Tree::ReturnNode	;iZ;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;iZ;
+;;{ ;"E:@children[ [o:Sass::Tree::ReturnNode	;iY;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;iY;
+;;{ ;"D:@children[ [o:Sass::Tree::ReturnNode	;iX;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;iX;
+;;{ ;"C:@children[ [o:Sass::Tree::ReturnNode	;iW;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;iW;
+;;{ ;"B:@children[ [o:Sass::Tree::ReturnNode	;iV;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;iV;
+;;{ ;"A:@children[ [o:Sass::Tree::ReturnNode	;iS;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;iS;
+;;{ ;"z:@children[ [o:Sass::Tree::ReturnNode	;iR;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;iR;
+;;{ ;"y:@children[ [o:Sass::Tree::ReturnNode	;iQ;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;iQ;
+;;{ ;"x:@children[ [o:Sass::Tree::ReturnNode	;iP;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;iP;
+;;{ ;"w:@children[ [o:Sass::Tree::ReturnNode	;iO;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;iO;
+;;{ ;"v:@children[ [o:Sass::Tree::ReturnNode	;iN;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;iN;
+;;{ ;"u:@children[ [o:Sass::Tree::ReturnNode	;iM;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;iM;
+;;{ ;"t:@children[ [o:Sass::Tree::ReturnNode	;iL;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;iL;
+;;{ ;"s:@children[ [o:Sass::Tree::ReturnNode	;iK;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;iK;
+;;{ ;"r:@children[ [o:Sass::Tree::ReturnNode	;iJ;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;iJ;
+;;{ ;"q:@children[ [o:Sass::Tree::ReturnNode	;iI;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;iI;
+;;{ ;"p:@children[ [o:Sass::Tree::ReturnNode	;iH;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;iH;
+;;{ ;"o:@children[ [o:Sass::Tree::ReturnNode	;iG;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;iG;
+;;{ ;"n:@children[ [o:Sass::Tree::ReturnNode	;iF;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;iF;
+;;{ ;"m:@children[ [o:Sass::Tree::ReturnNode	;iE;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;iE;
+;;{ ;"l:@children[ [o:Sass::Tree::ReturnNode	;iD;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;iD;
+;;{ ;"k:@children[ [o:Sass::Tree::ReturnNode	;iC;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;iC;
+;;{ ;"j:@children[ [o:Sass::Tree::ReturnNode	;iB;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;iB;
+;;{ ;"i:@children[ [o:Sass::Tree::ReturnNode	;iA;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;iA;
+;;{ ;"h:@children[ [o:Sass::Tree::ReturnNode	;i@;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;i@;
+;;{ ;"g:@children[ [o:Sass::Tree::ReturnNode	;i?;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;i?;
+;;{ ;"f:@children[ [o:Sass::Tree::ReturnNode	;i>;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;i>;
+;;{ ;"e:@children[ [o:Sass::Tree::ReturnNode	;i=;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;i=;
+;;{ ;"d:@children[ [o:Sass::Tree::ReturnNode	;i<;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;i<;
+;;{ ;"c:@children[ [o:Sass::Tree::ReturnNode	;i;;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;i;;
+;;{ ;"b:@children[ [o:Sass::Tree::ReturnNode	;i:;{:importero: Sass::Importers::Filesystem:
+@root"f/Data/FLX/Dev/Mobile/ConferencesMobileApp/resources/sass/../../touch/resources/themes/stylesheets:
+@expro;		;i:;
+;;{ ;"a:@children[ ;[[o;;"	name;{ ;"	name0o;F;i±;"include-pictos-font;@;G"!default;Ho;K;i±;{ ;T;[ 

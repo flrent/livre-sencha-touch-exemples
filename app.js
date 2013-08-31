@@ -24,7 +24,7 @@ Ext.application({
     name: 'ConfMate',
 
     requires: [
-        'Ext.MessageBox',
+        'Ext.MessageBox'
     ],
     models:[
         'Intervenant',

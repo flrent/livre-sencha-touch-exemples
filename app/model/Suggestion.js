@@ -10,7 +10,7 @@ Ext.define('ConfMate.model.Suggestion', {
         validations: [
             {type: 'length', field: 'nom', min: 2, message:"Le nom entré est trop court"},
             {type: 'format', field: 'email',type:'email'},
-            {type: 'length', field: 'message', min: 2},
+            {type: 'length', field: 'message', min: 2}
         ]
     }
 });

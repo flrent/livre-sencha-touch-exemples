@@ -4,7 +4,7 @@ Ext.define('ConfMate.controller.Favoris', {
     config: {
         refs: {
             navigation:'favorisMain',
-            favorisListe:'favorisListe',
+            favorisListe:'favorisListe'
         },
         control: {
             favorisListe:{

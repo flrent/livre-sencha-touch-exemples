@@ -6,7 +6,7 @@ Ext.define('ConfMate.view.infos.Suggestions', {
 	config: {
 		title:'Suggestions',
 		layout:{
-			type:'vbox',
+			type:'vbox'
 		},
 		items:[
 			{

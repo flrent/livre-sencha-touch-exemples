@@ -4,7 +4,7 @@ Ext.define('ConfMate.controller.Session', {
     config: {
         refs: {
             session:"planningSession",
-            ajouterAuFavoris:'planningSession button[cls=add-to-favorites]',
+            ajouterAuFavoris:'planningSession button[cls=add-to-favorites]'
         },
         control: {
             ajouterAuFavoris:{
