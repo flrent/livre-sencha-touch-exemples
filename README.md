@@ -18,7 +18,7 @@ Les données sont tirés de la conférence JSConf aux US, après que celle-ci es
 # Installation
 
 1. Installer la commande Sencha
-2. `git clone git@git@github.com:flrent/livre-sencha-touch-exemples.git`
+2. `git clone git@github.com:flrent/livre-sencha-touch-exemples.git`
 3. Lancer un serveur web et pointer vers ce dossier `python -m SimpleHTTPServer 8000`
 
 ## Liens utiles
