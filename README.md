@@ -13,7 +13,7 @@ Cette application est la version basique et allégée de ConfMate, qui est beauc
 
 Les données sont tirés de la conférence JSConf aux US, après que celle-ci est souhaitée utiliser ConfMate pour son application mobile. 
 
-**NOTE** : L'API Twitter a changé depuis. Il n'est plus possible de l'utiliser sans s'authentifer avec OAuth. J'ai volontairement laisser l'onglet de l'application pour la postérité.
+**NOTE** : L'API Twitter a changé depuis. Il n'est plus possible de l'utiliser sans s'authentifer avec OAuth. J'ai volontairement laissé l'onglet de l'application pour la postérité.
 
 # Installation
 
