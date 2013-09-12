@@ -2,6 +2,7 @@
 *English disclaimer : This is an example for a book I wrote in French about Sencha Touch. it's based of my [other app ConfMate](https://github.com/flrent/ConfMate) who is more elvoved than this one.*
 
 
+[Plus d'info sur mon blog](http://www.florentlamoureux.fr/blog/sortie-du-livre-sencha-touch-aux-editions-digit-books/)
 
 Vous trouverez ici l'application d'exemple qui est [mentionnée dans mon livre sur Sencha Touch](http://www.digitbooks.fr/sencha-touch-le-framework-des-applications-mobiles-221.html). 
 
