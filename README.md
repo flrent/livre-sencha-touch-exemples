@@ -22,7 +22,8 @@ Les données sont tirés de la conférence JSConf aux US, après que celle-ci es
 3. Lancer un serveur web et pointer vers ce dossier `python -m SimpleHTTPServer 8000`
 
 ## Liens utiles
-- Livre : http://www.digitbooks.fr/sencha-touch-le-framework-des-applications-mobiles-221.html
+- Article du blog : [http://www.florentlamoureux.fr/blog/sortie-du-livre-sencha-touch-aux-editions-digit-books/](http://www.florentlamoureux.fr/blog/sortie-du-livre-sencha-touch-aux-editions-digit-books/)
+- Livre : [http://www.digitbooks.fr/sencha-touch-le-framework-des-applications-mobiles-221.html](http://www.digitbooks.fr/sencha-touch-le-framework-des-applications-mobiles-221.html)
 - Twitter : [@flrent](http://twitter.com/flrent)
 
 N'hésitez pas pour toute question.
